@@ -7,9 +7,9 @@ type MovieList = {
 const Movies = ({ img, rate, title }: MovieList) => {
   return (
     <div>
-      <div className="bg-[#F4F4F5] rounded-lg w-[157.5px] h-[309.0999755859375px] xl:w-[229.729736328125px] xl:h-109.75">
+      <div className="bg-[#F4F4F5] rounded-lg w-[157.5px] h-[309.0999755859375px] xl:w-[218.24324951171875px] xl:h-[417.05px]">
         <img
-          className="w-[157.5px] object-cover h-[233.09999084472656] xl:w-[229.729736328125px] xl:h-85"
+          className="w-[157.5px] object-cover h-[233.09999084472656] xl:w-[218.24324951171875px] xl:h-80.75"
           src={img}
           alt="Movie"
         />
