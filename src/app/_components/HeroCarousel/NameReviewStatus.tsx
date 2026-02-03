@@ -4,12 +4,12 @@ type NameProps = {
 
 const NameReviewStatus = ({ name }: NameProps) => {
   return (
-    <div className="w-full h-13 flex justify-between">
-      <div>
-        <p className="font-normal text-sm leading-5 text-[#09090B]">
+    <div className="w-full flex justify-between">
+      <div className="flex flex-col md:gap-2">
+        <p className="font-normal text-sm leading-5 text-[#09090B] md:text-xl">
           Now Playing:
         </p>
-        <h3 className="font-semibold text-[24px] leading-8 tracking-[-2.5%]">
+        <h3 className="font-semibold text-[24px] leading-8 tracking-[-2.5%] md:text-4xl">
           {name}
         </h3>
       </div>

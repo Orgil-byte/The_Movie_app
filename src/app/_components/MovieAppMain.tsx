@@ -1,5 +1,5 @@
-import NavigationMain from "./Navigation";
-import HeroCarousel from "./HeroCarousel";
+import NavigationMain from "./Navigation/Navigation";
+import HeroCarousel from "./HeroCarousel/HeroCarousel";
 // import MovieList from "./MovieList";
 
 const MovieAppMain = () => {
