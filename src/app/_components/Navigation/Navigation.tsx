@@ -20,10 +20,20 @@ const NavigationMain = () => {
           Movie Z
         </p>
       </div>
-      <InputGroup className="w-94.75 hidden lg:block">
-        <InputGroupInput placeholder="Search..." />
-        <InputGroupAddon></InputGroupAddon>
-      </InputGroup>
+      <div className="flex gap-3 h-12">
+        <div className="w-24.25 rounded-md h-9 shadow py-2 px-4 flex gap-2 items-center cursor-pointer">
+          <img
+            className="w-4 h-4 object-cover "
+            src="NavImages/chevron-down.svg"
+            alt="down chevron"
+          />
+          <p className="font-medium text-[14px]">Genre</p>
+        </div>
+        <InputGroup className="w-94.75 hidden lg:block">
+          <InputGroupInput placeholder="Search..." />
+          <InputGroupAddon></InputGroupAddon>
+        </InputGroup>
+      </div>
       <div className="w-21 h-9 flex gap-3">
         <button className="w-9 h-9 border border-[#e4e4e7] rounded-md flex justify-center items-center shadow-sm drop-shadow-[2px] cursor-pointer lg:hidden">
           <img
