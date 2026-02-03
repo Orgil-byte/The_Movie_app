@@ -4,10 +4,12 @@ import HeroCarousel from "./HeroCarousel/HeroCarousel";
 
 const MovieAppMain = () => {
   return (
-    <div className="w-full h-screen">
-      <NavigationMain />
-      <HeroCarousel />
-      {/* <MovieList /> */}
+    <div className="flex justify-center w-full">
+      <div className="w-full h-screen max-w-360 flex flex-col items-center">
+        <NavigationMain />
+        <HeroCarousel />
+        {/* <MovieList /> */}
+      </div>
     </div>
   );
 };

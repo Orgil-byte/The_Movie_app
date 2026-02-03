@@ -4,12 +4,12 @@ type NameProps = {
 
 const NameReviewStatus = ({ name }: NameProps) => {
   return (
-    <div className="w-full flex justify-between">
+    <div className="w-full flex justify-between lg:flex-col">
       <div className="flex flex-col md:gap-2">
-        <p className="font-normal text-sm leading-5 text-[#09090B] md:text-xl">
+        <p className="font-normal text-sm leading-5 text-[#09090B] md:text-[16px] lg:text-white lg:text-[16px]">
           Now Playing:
         </p>
-        <h3 className="font-semibold text-[24px] leading-8 tracking-[-2.5%] md:text-4xl">
+        <h3 className="font-semibold text-[24px] leading-8 tracking-[-2.5%] md:text-4xl lg:text-white lg:text-[36px]">
           {name}
         </h3>
       </div>
@@ -19,9 +19,9 @@ const NameReviewStatus = ({ name }: NameProps) => {
           src="HeroCarousel/Vector.svg"
           alt="Star review"
         />
-        <p className="text-[18px] font-semibold leading-7 text-[#09090B]">
+        <p className="text-[18px] font-semibold leading-7 text-[#09090B] lg:text-white">
           6.9
-          <span className="font-normal text-[16px] leading-6 text-[#71717A]">
+          <span className="font-normal text-[16px] leading-6 text-[#71717A] lg:text-white">
             /10
           </span>
         </p>
