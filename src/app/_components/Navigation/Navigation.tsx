@@ -1,4 +1,3 @@
-import NavBars from "./NavBars";
 import {
   InputGroup,
   InputGroupAddon,

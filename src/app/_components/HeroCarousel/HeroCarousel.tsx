@@ -18,7 +18,7 @@ const HeroCarousel = () => {
   return (
     <div className="min-93.75 w-full overflow-hidden lg:mb-8 relative">
       <Carousel className="min-w-93.75 w-full">
-        <CarouselNext className="hidden absolute w-10 h-10 right-[3%] z-30 cursor-pointer lg:block"></CarouselNext>
+        <CarouselNext className="hidden absolute w-10 h-10 right-[3%] z-30 cursor-pointer lg:flex"></CarouselNext>
         <CarouselContent>
           {carouselData.map(({ img, id, name, text, imgObjTop }) => (
             <CarouselItem key={id}>
@@ -37,7 +37,7 @@ const HeroCarousel = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="hidden absolute w-10 h-10 left-[3%] z-40 cursor-pointer lg:block"></CarouselPrevious>
+        <CarouselPrevious className="hidden absolute w-10 h-10 left-[3%] z-40 cursor-pointer lg:flex"></CarouselPrevious>
       </Carousel>
       <div className="flex absolute items-center gap-1 top-[45%] left-[50%] sm:top-[58%] md:top-[55%] md:gap-2 lg:top-[92%] lg:left-[48.7%]">
         <a className="w-1 h-1 bg-white rounded-full opacity-100 md:w-2 md:h-2"></a>
