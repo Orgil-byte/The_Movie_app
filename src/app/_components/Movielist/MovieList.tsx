@@ -1,24 +1,21 @@
-// const MovieList = () => {
-//   return (
-//     <div className="px-5 flex flex-col min-w-93.75 gap-8">
-//       <div className="w-83.75 h-9 flex justify-between items-center">
-//         <p className="font-semibold text-[24px] leading-8 tracking-[-2.5%]">
-//           Upcoming
-//         </p>
-//         <div className="flex items-center justify-center w-30 gap-2">
-//           <button className="font-medium text-[14px] leading-5">
-//             See more
-//           </button>
-//           <img
-//             className="w-4 h-4 object-cover"
-//             src="MovieList/arrow-right.svg"
-//             alt="See more arrow"
-//           />
-//         </div>
-//       </div>
-//       <div className="grid grid-cols-2 gap-5"></div>
-//     </div>
-//   );
-// };
+"use client";
 
-// export default MovieList;
+import { useState } from "react";
+import MovieCategory from "./MovieCategory";
+import Movies from "./Movies";
+import { dataMovieList } from "@/app/_data/movie-list-data";
+
+const MovieList = () => {
+  const [list, setList] = useState(dataMovieList);
+
+  return (
+    <div className="px-5 flex flex-col w-full min-w-93.75 gap-8 md:px-10 lg:px-20">
+      <MovieCategory />
+      {list.map(({ rate, img, id, title }) => (
+        <Movies id={id} img={img} title={title} rate={rate} />
+      ))}
+    </div>
+  );
+};
+
+export default MovieList;
