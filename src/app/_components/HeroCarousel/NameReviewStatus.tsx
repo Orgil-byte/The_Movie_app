@@ -1,8 +1,9 @@
 type NameProps = {
   name: string;
+  rate: number;
 };
 
-const NameReviewStatus = ({ name }: NameProps) => {
+const NameReviewStatus = ({ name, rate }: NameProps) => {
   return (
     <div className="w-full flex justify-between lg:flex-col">
       <div className="flex flex-col md:gap-2">
@@ -20,7 +21,7 @@ const NameReviewStatus = ({ name }: NameProps) => {
           alt="Star review"
         />
         <p className="text-[18px] font-semibold leading-7 text-[#09090B] lg:text-white">
-          6.9
+          {rate}
           <span className="font-normal text-[16px] leading-6 text-[#71717A] lg:text-white">
             /10
           </span>

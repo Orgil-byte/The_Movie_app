@@ -20,7 +20,7 @@ const HeroCarousel = () => {
       <Carousel className="min-w-93.75 w-full">
         <CarouselNext className="hidden absolute w-10 h-10 right-[3%] z-30 cursor-pointer lg:flex"></CarouselNext>
         <CarouselContent>
-          {carouselData.map(({ img, id, name, text, imgObjTop }) => (
+          {carouselData.map(({ img, id, name, text, imgObjTop, rate }) => (
             <CarouselItem key={id}>
               <img
                 className={`min-w-93.75 w-full h-61.5 object-cover overflow-hidden sm:h-100 md:h-125 lg:h-150 ${imgObjTop}`}
@@ -28,7 +28,7 @@ const HeroCarousel = () => {
                 alt="Movie Img"
               />
               <div className="p-5 w-full flex flex-col h-66  gap-4 md:p-10 md:gap-7 md:h-90 lg:absolute lg:top-[20%] lg:ml-25 lg:text-white lg:gap-2 lg:w-fit">
-                <NameReviewStatus name={name} />
+                <NameReviewStatus name={name} rate={rate} />
                 <p className="text-sm font-normal text-[14px] leading-5 text-[#09090B] md:text-xl md:leading-7 lg:text-white lg:text-[12px] lg:leading-normal lg:w-75.5">
                   {text}
                 </p>

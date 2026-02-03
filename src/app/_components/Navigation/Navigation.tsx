@@ -20,7 +20,7 @@ const NavigationMain = () => {
           Movie Z
         </p>
       </div>
-      <div className="flex gap-3 h-12">
+      <div className="gap-3 h-12 items-center hidden lg:flex">
         <div className="w-24.25 rounded-md h-9 shadow py-2 px-4 flex gap-2 items-center cursor-pointer">
           <img
             className="w-4 h-4 object-cover "
@@ -29,7 +29,7 @@ const NavigationMain = () => {
           />
           <p className="font-medium text-[14px]">Genre</p>
         </div>
-        <InputGroup className="w-94.75 hidden lg:block">
+        <InputGroup className="w-94.75">
           <InputGroupInput placeholder="Search..." />
           <InputGroupAddon></InputGroupAddon>
         </InputGroup>
