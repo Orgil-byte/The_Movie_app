@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import {
   InputGroup,
   InputGroupAddon,
@@ -7,49 +9,37 @@ import {
   InputGroupTextarea,
 } from "@/components/ui/input-group";
 
+import Logo from "@/components/ui/Logo";
+import DesktopSearch from "./DesktopSearch";
+import { NavigationButtons } from "./NavigationButtons";
+import { NavigationSearch } from "./NavigationSearch";
+
 const NavigationMain = () => {
+  const [searchActive, setSearchActive] = useState(false);
+  const search = () => {
+    setSearchActive(true);
+  };
+
+  const closeSearch = () => {
+    setSearchActive(false);
+  };
+
   return (
-    <div className="w-full max-w-7xl h-14.75 flex justify-between px-5 items-center lg:mb-3">
-      <div className=" flex w-23 h-5 gap-2 items-center">
-        <img
-          className="w-5 h-5 object-cover text-indigo-700 cursor-pointer"
-          src="NavImages/film.svg"
-          alt="logo"
-        />
-        <p className="italic font-bold text-indigo-700 cursor-pointer">
-          Movie Z
-        </p>
-      </div>
-      <div className="gap-3 h-12 items-center hidden lg:flex">
-        <div className="w-24.25 rounded-md h-9 shadow py-2 px-4 flex gap-2 items-center cursor-pointer">
-          <img
-            className="w-4 h-4 object-cover "
-            src="NavImages/chevron-down.svg"
-            alt="down chevron"
-          />
-          <p className="font-medium text-[14px]">Genre</p>
+    <div className=" w-full max-w-7xl h-14.75 flex justify-between px-5 items-center lg:mb-3">
+      {searchActive ? (
+        <NavigationSearch closeSearch={closeSearch} />
+      ) : (
+        <div className="w-full max-w-7xl h-14.75 flex justify-between items-center">
+          <Logo />
+          <div className="gap-3 h-12 items-center hidden lg:flex">
+            <DesktopSearch />
+            <InputGroup className="w-94.75">
+              <InputGroupInput placeholder="Search..." />
+            </InputGroup>
+          </div>
+          <NavigationButtons search={search} />
         </div>
-        <InputGroup className="w-94.75">
-          <InputGroupInput placeholder="Search..." />
-          <InputGroupAddon></InputGroupAddon>
-        </InputGroup>
-      </div>
-      <div className="w-21 h-9 flex gap-3">
-        <button className="w-9 h-9 border border-[#e4e4e7] rounded-md flex justify-center items-center shadow-sm drop-shadow-[2px] cursor-pointer lg:hidden">
-          <img
-            className="w-4 h-4 object-cover"
-            src="NavImages/search.svg"
-            alt="Search bar"
-          />
-        </button>
-        <button className="w-9 h-9 border border-[#e4e4e7] rounded-md flex justify-center items-center shadow-sm drop-shadow-[2px] cursor-pointer">
-          <img
-            className="w-4 h-4 object-cover"
-            src="NavImages/moon.svg"
-            alt="Dark, Light mode switch bar"
-          />
-        </button>
-      </div>
+      )}
     </div>
   );
 };

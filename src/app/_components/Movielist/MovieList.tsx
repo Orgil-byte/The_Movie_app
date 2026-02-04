@@ -16,7 +16,7 @@ const MovieList = () => {
     <div className="px-5 flex flex-col w-full min-w-93.75 gap-8 md:px-10 lg:px-20 lg:gap-13">
       <div className="flex flex-col gap-8">
         <MovieCategory categoryName="Upcoming" />
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <div className="flex flex-wrap gap-5 lg:gap-8">
           {list.map(({ rate, img, id, title }) => (
             <Movies key={id} img={img} title={title} rate={rate} />
           ))}
@@ -24,7 +24,7 @@ const MovieList = () => {
       </div>
       <div className="flex flex-col gap-8">
         <MovieCategory categoryName="Popular" />
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <div className="flex flex-wrap gap-5 lg:gap-8">
           {popularList.map(({ rate, img, id, title }) => (
             <Movies key={id} img={img} title={title} rate={rate} />
           ))}
@@ -32,7 +32,7 @@ const MovieList = () => {
       </div>
       <div className="flex flex-col gap-8">
         <MovieCategory categoryName="Top Rated" />
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <div className="flex flex-wrap gap-5 lg:gap-8">
           {topRateList.map(({ rate, img, id, title }) => (
             <Movies key={id} img={img} title={title} rate={rate} />
           ))}

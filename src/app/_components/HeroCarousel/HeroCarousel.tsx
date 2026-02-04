@@ -23,7 +23,7 @@ const HeroCarousel = () => {
           {carouselData.map(({ img, id, name, text, imgObjTop, rate }) => (
             <CarouselItem key={id}>
               <img
-                className={`min-w-93.75 w-full h-61.5 object-cover overflow-hidden sm:h-100 md:h-125 lg:h-150 ${imgObjTop}`}
+                className={`min-w-93.75 w-full h-61.5 object-cover overflow-hidden sm:h-100 md:h-125 lg:h-150 ${imgObjTop} rounded-[2px]`}
                 src={img}
                 alt="Movie Img"
               />
