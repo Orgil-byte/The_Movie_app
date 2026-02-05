@@ -12,7 +12,7 @@ type NavigationSearchProps = {
 };
 export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
   return (
-    <div className="w-full h-14.75 flex justify-between items-center lg:mb-3 lg:hidden">
+    <div className="w-full h-14.75 flex justify-between items-center lg:mb-3">
       <button className="w-9 h-9 border border-[#e4e4e7] rounded-md flex justify-center items-center shadow-sm drop-shadow-[2px] cursor-pointer">
         <img
           className="w-4 h-4 object-cover"

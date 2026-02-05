@@ -9,7 +9,7 @@ export const dataHeroCarousel = [
   },
   {
     id: 2,
-    img: "HeroCarousel/gladiator2.png",
+    img: "HeroCarousel/gladiator2.jpg",
     name: "Gladiator II",
     imgObjTop: "object-top",
     text: "After his home is conquered by the tyrannical emperors who now lead Rome, Lucius is forced to enter the Colosseum and must look to his past to find strength to return the glory of Rome to its people.",

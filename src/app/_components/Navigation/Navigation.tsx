@@ -2,15 +2,15 @@
 import { useState } from "react";
 import {
   InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
+  // InputGroupAddon,
+  // InputGroupButton,
   InputGroupInput,
-  InputGroupText,
-  InputGroupTextarea,
+  // InputGroupText,
+  // InputGroupTextarea,
 } from "@/components/ui/input-group";
 
 import Logo from "@/components/ui/Logo";
-import DesktopSearch from "./DesktopSearch";
+import { DesktopSearch } from "./DesktopSearch";
 import { NavigationButtons } from "./NavigationButtons";
 import { NavigationSearch } from "./NavigationSearch";
 
@@ -25,7 +25,7 @@ const NavigationMain = () => {
   };
 
   return (
-    <div className=" w-full max-w-7xl h-14.75 flex justify-between px-5 items-center lg:mb-3">
+    <div className=" w-full max-w-7xl h-14.75 flex justify-between px-5 items-center md:mb-3">
       {searchActive ? (
         <NavigationSearch closeSearch={closeSearch} />
       ) : (
