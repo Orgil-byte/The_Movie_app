@@ -3,8 +3,7 @@ type NavigationButtonsProps = {
   search: () => void;
 };
 
-import * as React from "react";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Search, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,21 +17,19 @@ export const NavigationButtons = ({ search }: NavigationButtonsProps) => {
   const { setTheme } = useTheme();
   return (
     <div className="w-21 h-9 flex gap-3">
-      <button
+      <Button
+        variant="outline"
+        size="icon"
+        className="dark:text-white"
         onClick={search}
-        className="w-9 h-9 border border-[#e4e4e7] rounded-md flex justify-center items-center shadow-sm drop-shadow-[2px] cursor-pointer lg:hidden"
       >
-        <img
-          className="w-4 h-4 object-cover"
-          src="NavImages/search.svg"
-          alt="Search bar"
-        />
-      </button>
+        <Search />
+      </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="icon">
             <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-            <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+            <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0 dark:text-white" />
             <span className="sr-only">Toggle theme</span>
           </Button>
         </DropdownMenuTrigger>

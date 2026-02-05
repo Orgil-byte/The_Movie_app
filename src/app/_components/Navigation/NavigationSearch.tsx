@@ -21,6 +21,7 @@ import {
   // InputGroupText,
   // InputGroupTextarea,
 } from "@/components/ui/input-group";
+import { Search, X } from "lucide-react";
 
 type NavigationSearchProps = {
   closeSearch: () => void;
@@ -32,7 +33,7 @@ export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger></NavigationMenuTrigger>
+            <NavigationMenuTrigger className="w-9 h-9 flex justify-center items-center"></NavigationMenuTrigger>
             <NavigationMenuContent className="p-5">
               <div className="flex flex-col gap-1">
                 <h1 className="font-semibold text-2xl leading-8 text-[#09090B]">
@@ -65,7 +66,7 @@ export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
       </NavigationMenu>
       <div className="flex w-63">
         <button className="cursor-pointer">
-          <img className="opacity-50" src="NavImages/search.svg" alt="Search" />
+          <Search className="w-4.5 text-gray-400 object-cover h-4.5" />
         </button>
         <InputGroup className="border-none shadow-none">
           <InputGroupInput
@@ -75,7 +76,7 @@ export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
         </InputGroup>
       </div>
       <button onClick={closeSearch} className="cursor-pointer">
-        <img src="NavImages/x.svg" alt="Close Button" />
+        <X className="w-4 h-4" />
       </button>
     </div>
   );
