@@ -6,7 +6,7 @@ import Footer from "./Footer/Footer";
 const MovieAppMain = () => {
   return (
     <div className="flex justify-center w-full">
-      <div className="w-full h-fit  flex flex-col items-center max-w-360">
+      <div className="w-full h-fit flex flex-col items-center max-w-360">
         <NavigationMain />
         <HeroCarousel />
         <MovieList />

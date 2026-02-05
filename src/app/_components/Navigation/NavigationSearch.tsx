@@ -1,25 +1,68 @@
+"use client";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import { useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import * as React from "react";
+import Link from "next/link";
+import { navGenresData } from "@/app/_data/nav-genres-data";
+
 import {
   InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
+  // InputGroupAddon,
+  // InputGroupButton,
   InputGroupInput,
-  InputGroupText,
-  InputGroupTextarea,
+  // InputGroupText,
+  // InputGroupTextarea,
 } from "@/components/ui/input-group";
 
 type NavigationSearchProps = {
   closeSearch: () => void;
 };
 export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
+  const [genres, setGenres] = useState(navGenresData);
   return (
     <div className="w-full h-14.75 flex justify-between items-center lg:mb-3">
-      <button className="w-9 h-9 border border-[#e4e4e7] rounded-md flex justify-center items-center shadow-sm drop-shadow-[2px] cursor-pointer">
-        <img
-          className="w-4 h-4 object-cover"
-          src="NavImages/chevron-down.svg"
-          alt="Dark, Light mode switch bar"
-        />
-      </button>
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger></NavigationMenuTrigger>
+            <NavigationMenuContent className="p-5">
+              <div className="flex flex-col gap-1">
+                <h1 className="font-semibold text-2xl leading-8 text-[#09090B]">
+                  Genres
+                </h1>
+                <p className="text-base text-[#09090B]">
+                  See lists of movies by genre
+                </p>
+              </div>
+              <div className="w-full py-4">
+                <div className="w-full h-px bg-gray-300"></div>
+              </div>
+              <ul className="flex w-77 gap-4 h-fit flex-wrap">
+                {genres.map((genres) => (
+                  <Badge
+                    key={genres.title}
+                    className="hover:bg-white hover:text-black hover:border hover:border-gray-300 "
+                  >
+                    <ListItem
+                      className="font-semibold text-[12px] rounded-full"
+                      title={genres.title}
+                      href={genres.href}
+                    ></ListItem>
+                  </Badge>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
       <div className="flex w-63">
         <button className="cursor-pointer">
           <img className="opacity-50" src="NavImages/search.svg" alt="Search" />
@@ -37,3 +80,23 @@ export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
     </div>
   );
 };
+
+function ListItem({
+  title,
+  children,
+  href,
+  ...props
+}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+  return (
+    <li {...props}>
+      <NavigationMenuLink asChild>
+        <Link href={href}>
+          <div className="flex flex-col gap-1 text-sm">
+            <div className="leading-none font-medium">{title}</div>
+            <div className="text-muted-foreground line-clamp-2">{children}</div>
+          </div>
+        </Link>
+      </NavigationMenuLink>
+    </li>
+  );
+}

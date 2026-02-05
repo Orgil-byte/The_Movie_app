@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { cva } from "class-variance-authority";
 import { ChevronDownIcon } from "lucide-react";
@@ -75,6 +77,7 @@ function NavigationMenuTrigger({
       className={cn(navigationMenuTriggerStyle(), "group", className)}
       onPointerMove={(e) => e.preventDefault()}
       onPointerLeave={(e) => e.preventDefault()}
+      suppressHydrationWarning
       {...props}
     >
       {children}{" "}
