@@ -1,7 +1,5 @@
-import NavigationMain from "./Navigation/Navigation";
 import HeroCarousel from "./HeroCarousel/HeroCarousel";
 import MovieList from "./Movielist/MovieList";
-import Footer from "./Footer/Footer";
 
 const MovieAppMain = () => {
   return (
