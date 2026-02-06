@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import NameReviewStatus from "./NameReviewStatus";
 import WatchLaterBtn from "./WatchLaterBtn";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { dataHeroCarousel } from "../../_data/hero-carousel-data";
 
 const HeroCarousel = () => {
