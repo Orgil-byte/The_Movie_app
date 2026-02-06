@@ -21,7 +21,7 @@ import {
   // InputGroupText,
   // InputGroupTextarea,
 } from "@/components/ui/input-group";
-import { ChevronDown, Search, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 
 type NavigationSearchProps = {
   closeSearch: () => void;
