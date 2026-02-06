@@ -20,7 +20,7 @@ export const NavigationButtons = ({ search }: NavigationButtonsProps) => {
       <Button
         variant="outline"
         size="icon"
-        className="dark:text-white"
+        className="dark:text-white lg:hidden"
         onClick={search}
       >
         <Search />
