@@ -21,7 +21,7 @@ import {
   // InputGroupText,
   // InputGroupTextarea,
 } from "@/components/ui/input-group";
-import { Search, X } from "lucide-react";
+import { ChevronDown, Search, X } from "lucide-react";
 
 type NavigationSearchProps = {
   closeSearch: () => void;
@@ -33,13 +33,13 @@ export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="w-9 h-9 flex justify-center items-center"></NavigationMenuTrigger>
+            <NavigationMenuTrigger className="w-9 h-9 p-0 flex items-center justify-center pr-1 drop-shadow-[2px] shadow-sm dark:text-[#fafafa] dark:bg-neutral-800"></NavigationMenuTrigger>
             <NavigationMenuContent className="p-5">
               <div className="flex flex-col gap-1">
-                <h1 className="font-semibold text-2xl leading-8 text-[#09090B]">
+                <h1 className="font-semibold text-2xl leading-8 text-[#09090B] dark:text-[#FAFAFA]">
                   Genres
                 </h1>
-                <p className="text-base text-[#09090B]">
+                <p className="text-base text-[#09090B] dark:text-[#FAFAFA]">
                   See lists of movies by genre
                 </p>
               </div>
@@ -50,7 +50,7 @@ export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
                 {genres.map((genres) => (
                   <Badge
                     key={genres.title}
-                    className="hover:bg-white hover:text-black hover:border hover:border-gray-300 "
+                    className="hover:bg-white hover:text-black hover:border hover:border-gray-300 dark:hover:bg-neutral-800 dark:hover:text-[#FAFAFA]"
                   >
                     <ListItem
                       className="font-semibold text-[12px] rounded-full"
@@ -76,7 +76,7 @@ export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
         </InputGroup>
       </div>
       <button onClick={closeSearch} className="cursor-pointer">
-        <X className="w-4 h-4" />
+        <X className="w-4 h-4 dark:text-[#fafafa]" />
       </button>
     </div>
   );

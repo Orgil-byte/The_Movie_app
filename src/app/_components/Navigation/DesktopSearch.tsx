@@ -19,13 +19,15 @@ export const DesktopSearch = () => {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem className="hidden md:flex">
-          <NavigationMenuTrigger>Genre</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="dark:text-white">
+            Genre
+          </NavigationMenuTrigger>
           <NavigationMenuContent className="p-5">
             <div className="flex flex-col gap-1">
-              <h1 className="font-semibold text-2xl leading-8 text-[#09090B]">
+              <h1 className="font-semibold text-2xl leading-8 text-[#09090B] dark:text-white">
                 Genres
               </h1>
-              <p className="text-base text-[#09090B]">
+              <p className="text-base text-[#09090B] dark:text-white">
                 See lists of movies by genre
               </p>
             </div>
@@ -36,7 +38,7 @@ export const DesktopSearch = () => {
               {genres.map((genres) => (
                 <Badge
                   key={genres.title}
-                  className="hover:bg-white hover:text-black hover:border hover:border-gray-300 "
+                  className="hover:bg-white hover:text-black hover:border hover:border-gray-300 dark:hover:bg-neutral-800 dark:hover:text-[#FAFAFA]"
                 >
                   <ListItem
                     className="font-semibold text-[12px] rounded-full"

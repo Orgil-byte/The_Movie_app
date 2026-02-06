@@ -29,7 +29,7 @@ const HeroCarousel = () => {
               />
               <div className="p-5 w-full flex flex-col h-72  gap-4 md:p-10 md:gap-7 md:h-100 lg:absolute lg:ml-25 lg:text-white lg:gap-2 lg:h-fit lg:w-fit lg:top-[20%] xl:top-[30%]">
                 <NameReviewStatus name={name} rate={rate} />
-                <p className="text-sm font-normal text-[14px] leading-5 text-[#09090B] md:text-xl md:leading-7 lg:text-white lg:text-[12px] lg:leading-normal lg:w-75.5">
+                <p className="text-sm font-normal text-[14px] leading-5 text-[#09090B] md:text-xl md:leading-7 lg:text-white lg:text-[12px] lg:leading-normal lg:w-75.5  dark:text-[#fafafa]">
                   {text}
                 </p>
                 <WatchLaterBtn />
