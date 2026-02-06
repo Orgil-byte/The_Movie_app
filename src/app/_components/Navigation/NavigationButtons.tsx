@@ -16,7 +16,7 @@ import {
 export const NavigationButtons = ({ search }: NavigationButtonsProps) => {
   const { setTheme } = useTheme();
   return (
-    <div className="w-9 h-9 flex gap-3">
+    <div className="h-9 flex gap-3">
       <Button
         variant="outline"
         size="icon"
