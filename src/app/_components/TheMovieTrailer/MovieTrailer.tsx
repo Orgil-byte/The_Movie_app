@@ -3,7 +3,7 @@ import { Play } from "lucide-react";
 export const MovieTrailer = () => {
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex gap-10 px-5">
+      <div className="flex gap-10 px-5 lg:justify-between">
         <div className="flex flex-col gap-1">
           <h1 className="font-semibold text-[24px] dark:text-white">Wicked</h1>
           <p className="text-sm dark:text-white">2024.11.26 · PG · 2h 40m</p>
@@ -24,13 +24,20 @@ export const MovieTrailer = () => {
         </div>
       </div>
       <div className="w-fit h-fit relative">
-        <img
-          src="/TheWatchMovie/wicked.jpg"
-          alt="ewd"
-          className="w-full aspect-9/5 object-cover"
-        />
-        <div className="absolute flex top-80% left-3 items-center gap-2">
-          <div className="bg-white rounded-full w-8 h-8 flex justify-center items-center">
+        <div className="flex gap-8">
+          <img
+            className="hidden w-full max-h-107 max-w-72.5 object-cover rounded-sm lg:block"
+            src="TheWatchMovie/wicked2.jpg"
+            alt="ehd"
+          />
+          <img
+            src="/TheWatchMovie/wicked.jpg"
+            alt="ewd"
+            className="w-full lg:max-w-190 aspect-9/5 object-cover brightness-60 lg:rounded-sm"
+          />
+        </div>
+        <div className="absolute flex top-[75%] left-[5%] items-center gap-2 sm:top-[80%] md:top-[85%] lg:left-[35%]">
+          <div className="bg-white rounded-full w-10 h-10 flex justify-center items-center">
             <Play className="w-4 h-4 text-black" />
           </div>
           <p className="text-white">Play Trailer</p>
