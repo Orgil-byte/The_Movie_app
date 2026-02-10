@@ -9,28 +9,33 @@ import {
 } from "@/components/ui/carousel";
 import NameReviewStatus from "./NameReviewStatus";
 import WatchLaterBtn from "./WatchLaterBtn";
-import { useState } from "react";
-import { dataHeroCarousel } from "../../_data/hero-carousel-data";
+import { FetchMovieDataType } from "@/lib/api";
 
-const HeroCarousel = () => {
-  const [carouselData, setCarouselData] = useState(dataHeroCarousel);
+type MovieListProps = {
+  data: FetchMovieDataType;
+};
 
+const HeroCarousel = ({ data }: MovieListProps) => {
+  const basImgurl = "https://image.tmdb.org/t/p/original";
   return (
     <div className="min-93.75 w-full overflow-hidden lg:mb-8 relative">
       <Carousel className="min-w-93.75 w-full">
         <CarouselNext className="hidden absolute w-10 h-10 right-[3%] z-30 cursor-pointer lg:flex"></CarouselNext>
         <CarouselContent>
-          {carouselData.map(({ img, id, name, text, imgObjTop, rate }) => (
-            <CarouselItem key={id}>
+          {data.results.map((movie) => (
+            <CarouselItem key={movie.id}>
               <img
-                className={`h-full w-full max-h-61.5 object-cover overflow-hidden sm:max-h-100 md:max-h-125 lg:max-h-150 xl:max-h-200 ${imgObjTop} rounded-[5px]`}
-                src={img}
+                className={`h-full w-full max-h-61.5 object-cover overflow-hidden sm:max-h-100 md:max-h-125 lg:max-h-150 xl:max-h-200  rounded-[5px]`}
+                src={basImgurl + movie.backdrop_path}
                 alt="Movie Img"
               />
               <div className="p-5 w-full flex flex-col h-72  gap-4 md:p-10 md:gap-7 md:h-100 lg:absolute lg:ml-25 lg:text-white lg:gap-2 lg:h-fit lg:w-fit lg:top-[20%] xl:top-[30%]">
-                <NameReviewStatus name={name} rate={rate} />
+                <NameReviewStatus
+                  name={movie.title}
+                  rate={movie.vote_average}
+                />
                 <p className="text-sm font-normal text-[14px] leading-5 text-[#09090B] md:text-xl md:leading-7 lg:text-white lg:text-[12px] lg:leading-normal lg:w-75.5  dark:text-[#fafafa]">
-                  {text}
+                  {movie.overview}
                 </p>
                 <WatchLaterBtn />
               </div>

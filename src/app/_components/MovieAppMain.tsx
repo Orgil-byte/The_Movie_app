@@ -7,7 +7,7 @@ const MovieAppMain = async () => {
   return (
     <div className="flex justify-center w-full">
       <div className="w-full h-fit flex flex-col items-center max-w-360">
-        <HeroCarousel />
+        <HeroCarousel data={data} />
         <MovieList data={data} />
       </div>
     </div>
