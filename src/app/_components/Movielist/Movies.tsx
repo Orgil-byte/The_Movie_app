@@ -6,12 +6,15 @@ type MovieList = {
 import Link from "next/link";
 
 const Movies = ({ img, rate, title }: MovieList) => {
+  const basImgurl = "https://image.tmdb.org/t/p/w500";
+  console.log(basImgurl + img);
+
   return (
     <Link href="TheMovie">
       <div className="bg-[#F4F4F5] dark:bg-[#27272A] rounded-lg min-w-[157.5px] min-h-[309.0999755859375px] w-full h-full  cursor-pointer">
         <img
           className="object-cover w-full aspect-2/3 rounded-t-lg"
-          src={img}
+          src={basImgurl + img}
           alt="Movie"
         />
         <div className="p-2 flex flex-col gap-1">

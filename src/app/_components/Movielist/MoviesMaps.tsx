@@ -6,6 +6,7 @@ import { dataPopularList } from "@/app/_data/movie-list-data";
 import { dataTopRatedList } from "@/app/_data/movie-list-data";
 import Movies from "./Movies";
 import { FetchMovieDataType } from "@/lib/api";
+import { Movie } from "@/lib/api";
 
 type MovieListProps = {
   showSeeMore: boolean;
@@ -24,10 +25,10 @@ export const UpComingMovies = ({
         url="/UpComing"
       />
       <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-3 md:gap-5 md:grid-cols-4 lg:gap-6 lg:grid-cols-5">
-        {data.map(({ movie }) => (
+        {data.results.map((movie) => (
           <Movies
             key={movie.id}
-            img={""}
+            img={movie.poster_path}
             title={movie.title}
             rate={movie.vote_average}
           />
