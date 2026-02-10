@@ -1,3 +1,27 @@
+export type FetchMovieDataType = {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
+};
+
+export type Movie = {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+};
+
 const url = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
 
 const token =
@@ -11,10 +35,12 @@ const options = {
   },
 };
 
-export const getPopularMovies = async () => {
+export const getPopularMovies = async (): Promise<FetchMovieDataType> => {
   const response = await fetch(url, options);
   const movies = await response.json();
   console.log(movies);
+
+  return movies;
 };
 
 getPopularMovies();

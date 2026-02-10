@@ -15,9 +15,9 @@ export const MoreLikeThis = () => {
       </div>
       <div className="flex gap-5 overflow-scroll no-scrollbar">
         <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
-        <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />{" "}
         <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
-        <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />{" "}
+        <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
+        <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
         <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
         <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
       </div>
