@@ -8,6 +8,9 @@ type MovieListProps = {
 };
 
 export const PopularMovies = ({ data, showSeeMore = true }: MovieListProps) => {
+  const moviesToDisplay = showSeeMore
+    ? data.results.slice(0, 10)
+    : data.results;
   return (
     <div className="flex flex-col gap-8">
       <MovieCategory
@@ -16,7 +19,7 @@ export const PopularMovies = ({ data, showSeeMore = true }: MovieListProps) => {
         url="/Popular"
       />
       <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-3 md:gap-5 md:grid-cols-4 lg:gap-6 lg:grid-cols-5">
-        {data.results.slice(0, 10).map((movie) => (
+        {moviesToDisplay.map((movie) => (
           <Movies
             key={movie.id}
             img={movie.poster_path}
@@ -32,6 +35,9 @@ export const UpComingMovies = ({
   data,
   showSeeMore = true,
 }: MovieListProps) => {
+  const moviesToDisplay = showSeeMore
+    ? data.results.slice(0, 10)
+    : data.results;
   return (
     <div className="flex flex-col gap-8">
       <MovieCategory
@@ -40,7 +46,7 @@ export const UpComingMovies = ({
         url="/UpComing"
       />
       <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-3 md:gap-5 md:grid-cols-4 lg:gap-6 lg:grid-cols-5">
-        {data.results.slice(0, 10).map((movie) => (
+        {moviesToDisplay.map((movie) => (
           <Movies
             key={movie.id}
             img={movie.poster_path}
@@ -56,6 +62,9 @@ export const TopRatedMovies = ({
   data,
   showSeeMore = true,
 }: MovieListProps) => {
+  const moviesToDisplay = showSeeMore
+    ? data.results.slice(0, 10)
+    : data.results;
   return (
     <div className="flex flex-col gap-8">
       <MovieCategory
@@ -64,7 +73,7 @@ export const TopRatedMovies = ({
         url="/TopRated"
       />
       <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-3 md:gap-5 md:grid-cols-4 lg:gap-6 lg:grid-cols-5">
-        {data.results.slice(0, 10).map((movie) => (
+        {moviesToDisplay.map((movie) => (
           <Movies
             key={movie.id}
             img={movie.poster_path}
