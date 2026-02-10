@@ -26,7 +26,7 @@ const HeroCarousel = async ({ movies }: HeroCarouselProps) => {
                 src={basImgurl + movie.backdrop_path}
                 alt="Movie Img"
               />
-              <div className="p-5 w-full flex flex-col gap-4 md:p-10 md:gap-7 min-h-72 md:mb-8  lg:absolute lg:ml-25 lg:text-white lg:gap-2  lg:w-fit lg:top-[20%] xl:top-[30%]">
+              <div className="p-5 w-full mb-4 flex flex-col gap-4 md:p-10 md:gap-7 min-h-72 md:mb-8  lg:absolute lg:ml-25 lg:text-white lg:gap-2  lg:w-fit lg:top-[20%] xl:top-[30%]">
                 <NameReviewStatus
                   name={movie.title}
                   rate={movie.vote_average}

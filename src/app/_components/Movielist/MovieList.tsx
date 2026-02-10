@@ -2,7 +2,6 @@ import { UpComingMovies } from "./MoviesMaps";
 import { PopularMovies } from "./MoviesMaps";
 import { TopRatedMovies } from "./MoviesMaps";
 import {
-  FetchMovieDataType,
   getPopularMovies,
   getTopRatedMovies,
   getUpComingMovies,

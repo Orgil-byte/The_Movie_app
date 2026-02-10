@@ -7,7 +7,6 @@ import Link from "next/link";
 
 const Movies = ({ img, rate, title }: MovieList) => {
   const basImgurl = "https://image.tmdb.org/t/p/w500";
-  console.log(basImgurl + img);
 
   return (
     <Link href="TheMovie">
