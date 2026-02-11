@@ -19,8 +19,8 @@ export const MoreLikeThis = ({ movies = [] }: SimilarMovieProps) => {
           <ArrowRight className="w-4 h-4 dark:text-white" />
         </div>
       </div>
-      <div className="flex gap-5 overflow-scroll no-scrollbar">
-        {movies.map((movie) => (
+      <div className="flex gap-5 overflow-y-scroll overflow-x-hidden no-scrollbar">
+        {movies.slice(0, 5).map((movie) => (
           <Link href={`/${movie.id}`} key={movie.id}>
             <Movies
               key={movie.id}
