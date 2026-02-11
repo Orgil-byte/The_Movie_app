@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import Movies from "../Movielist/Movies";
+import { MovieDetailsType } from "@/lib/movie-data-types";
 
 export const MoreLikeThis = () => {
   return (
@@ -14,12 +15,12 @@ export const MoreLikeThis = () => {
         </div>
       </div>
       <div className="flex gap-5 overflow-scroll no-scrollbar">
+        {/* <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
         <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
         <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
         <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
         <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
-        <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
-        <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
+        <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" /> */}
       </div>
     </div>
   );

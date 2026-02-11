@@ -1,12 +1,25 @@
+import { MovieDetailsType } from "@/lib/movie-data-types";
+import { CastCrewsType } from "@/lib/movie-data-types";
 import { Play } from "lucide-react";
 
-export const MovieTrailer = () => {
+type MovieTrailerProps = {
+  movie: MovieDetailsType;
+};
+
+export const MovieTrailer = ({
+  movie,
+  castCrew,
+}: MovieTrailerProps & CastCrewsType) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex gap-10 px-5 lg:justify-between">
         <div className="flex flex-col gap-1">
-          <h1 className="font-semibold text-[24px] dark:text-white">Wicked</h1>
-          <p className="text-sm dark:text-white">2024.11.26 · PG · 2h 40m</p>
+          <h1 className="font-semibold text-[24px] dark:text-white">
+            {movie.title}
+          </h1>
+          <p className="text-sm dark:text-white">
+            {movie.release_date} · PG · {movie.runtime} minute
+          </p>
         </div>
         <div className="flex items-center gap-1">
           <img
@@ -16,10 +29,10 @@ export const MovieTrailer = () => {
           />
           <div>
             <p className="text-sm font-semibold text-[#09090B] xl:text-[14px] dark:text-[#fafafa]">
-              6.9
+              {movie.vote_average}
               <span className="font-normal  text-[#71717A]">/10</span>
             </p>
-            <p className="text-[#71717A] text-xs">37k</p>
+            <p className="text-[#71717A] text-xs">{movie.popularity}k</p>
           </div>
         </div>
       </div>
@@ -27,11 +40,11 @@ export const MovieTrailer = () => {
         <div className="flex gap-8">
           <img
             className="hidden w-full max-h-107 max-w-72.5 object-cover rounded-sm lg:block"
-            src="TheWatchMovie/wicked2.jpg"
+            src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
             alt="ehd"
           />
           <img
-            src="/TheWatchMovie/wicked.jpg"
+            src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
             alt="ewd"
             className="w-full lg:max-w-190 aspect-9/5 object-cover brightness-60 lg:rounded-sm"
           />

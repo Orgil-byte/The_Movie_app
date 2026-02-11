@@ -1,6 +1,15 @@
 import { Badge } from "@/components/ui/badge";
+import { MovieDetailsType } from "@/lib/movie-data-types";
+import { CastCrewsType } from "@/lib/movie-data-types";
 
-export const MovieInfo = () => {
+type MovieInfoProps = {
+  movie: MovieDetailsType;
+};
+
+export const MovieInfo = ({
+  movie,
+  castCrew,
+}: MovieInfoProps & CastCrewsType) => {
   return (
     <div className="px-5 w-full flex flex-col gap-5">
       <div className="flex gap-8.5">
@@ -11,35 +20,25 @@ export const MovieInfo = () => {
         />
         <div className="flex flex-col gap-5">
           <div className="flex flex-wrap gap-3">
-            <Badge className="font-semibold text-[12px]  text-black bg-white border border-gray-300 px-3.5 p-y h-5 dark:bg-black dark:text-white dark:border-neutral-800">
-              Fairy Tale
-            </Badge>
-            <Badge className="font-semibold text-[12px]  text-black bg-white border border-gray-300 px-3.5 p-y h-5 dark:bg-black dark:text-white dark:border-neutral-800">
-              Pop Musical
-            </Badge>
-            <Badge className="font-semibold text-[12px]  text-black bg-white border border-gray-300 px-3.5 p-y h-5 dark:bg-black dark:text-white dark:border-neutral-800">
-              Fantasy
-            </Badge>
-            <Badge className="font-semibold text-[12px]  text-black bg-white border border-gray-300 px-3.5 p-y h-5 dark:bg-black dark:text-white dark:border-neutral-800">
-              Musical
-            </Badge>
-            <Badge className="font-semibold text-[12px] text-black bg-white border border-gray-300 px-3.5 p-y h-5 dark:bg-black dark:text-white dark:border-neutral-800">
-              Romance
-            </Badge>
+            {movie.genres.map((genre, i) => (
+              <Badge
+                key={i}
+                className="font-semibold text-[12px] text-black bg-white border border-gray-300 px-3.5 py-0 h-5 dark:bg-black dark:text-white dark:border-neutral-800"
+              >
+                {typeof genre === "string"
+                  ? genre
+                  : ((genre as any).name ?? "")}
+              </Badge>
+            ))}
           </div>
-          <p className="leading-6 dark:text-white">
-            Elphaba, a misunderstood young woman because of her green skin, and
-            Glinda, a popular girl, become friends at Shiz University in the
-            Land of Oz. After an encounter with the Wonderful Wizard of Oz,
-            their friendship reaches a crossroads.
-          </p>
+          <p className="leading-6 dark:text-white">{movie.overview}</p>
         </div>
       </div>
       <div className="w-full flex flex-col gap-5">
         <div className="flex flex-col gap-4">
           <div className="flex gap-13.25">
             <h3 className="font-bold dark:text-white">Director</h3>
-            <p className="dark:text-white">Jon M. Chu</p>
+            <p className="dark:text-white"></p>
           </div>
           <div className="h-px w-full bg-[#E4E4E7] dark:bg-neutral-800"></div>
         </div>
@@ -54,7 +53,7 @@ export const MovieInfo = () => {
         </div>
         <div className="flex flex-col gap-4">
           <div className="flex gap-13.25">
-            <h3 className="font-bold dark:text-white">Director</h3>
+            <h3 className="font-bold dark:text-white">Stars</h3>
             <p className="dark:text-white">
               Cynthia Erivo · Ariana Grande · Jeff Goldblum
             </p>
