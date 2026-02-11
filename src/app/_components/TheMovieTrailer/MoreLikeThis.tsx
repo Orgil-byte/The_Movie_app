@@ -1,8 +1,14 @@
 import { ArrowRight } from "lucide-react";
 import Movies from "../Movielist/Movies";
-import { MovieDetailsType } from "@/lib/movie-data-types";
+import { SimilarMovieTypes } from "@/lib/movie-data-types";
 
-export const MoreLikeThis = () => {
+
+
+type SimilarMovieProps = {
+  movie: SimilarMovieTypes;
+};
+
+export const MoreLikeThis = ({movie} : SimilarMovieProps) => {
   return (
     <div className="flex flex-col gap-8 px-5">
       <div className="flex justify-between">
@@ -15,13 +21,10 @@ export const MoreLikeThis = () => {
         </div>
       </div>
       <div className="flex gap-5 overflow-scroll no-scrollbar">
-        {/* <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
-        <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
-        <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
-        <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
-        <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
-        <Movies rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" /> */}
-      </div>
+        <div>
+        <Movies id={movie.id} rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
+      
+      </div></div>
     </div>
   );
 };
