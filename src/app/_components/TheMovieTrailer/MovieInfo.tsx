@@ -28,8 +28,8 @@ export const MovieInfo = ({ movie, castCrew }: MovieInfoProps) => {
     <div className="px-5 w-full flex flex-col gap-5">
       <div className="flex gap-8.5">
         <img
-          src="/TheWatchMovie/wicked2.jpg"
-          alt="wicked"
+          src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+          alt="movie"
           className="w-25 h-37 object-cover lg:hidden"
         />
         <div className="flex flex-col gap-5">
