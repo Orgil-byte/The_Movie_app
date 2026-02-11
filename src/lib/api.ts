@@ -27,6 +27,18 @@ getPopularMovies();
 
 // ==================================================================================
 
+export const getNowPlayingMovies = async (): Promise<FetchMovieDataType> => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`,
+    options,
+  );
+  const movies = await response.json();
+  return movies;
+};
+getNowPlayingMovies();
+
+// ==================================================================================
+
 export const getUpComingMovies = async (): Promise<FetchMovieDataType> => {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`,
@@ -62,7 +74,9 @@ export const getPopularMovieById = async (
   return movies;
 };
 
-export const getDirectorsActors = async (movieId: string): Promise<Cast> => {
+export const getDirectorsActors = async (
+  movieId: string,
+): Promise<CastCrewsType> => {
   const response = await fetch(
     `https://api.themoviedb.org/3//movie/${movieId}/credits?language=en-US`,
     options,

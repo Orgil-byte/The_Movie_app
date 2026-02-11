@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import NameReviewStatus from "./NameReviewStatus";
 import WatchLaterBtn from "./WatchLaterBtn";
-import { Movie } from "@/lib/api";
+import { Movie } from "@/lib/movie-data-types";
 
 type HeroCarouselProps = {
   movies: Movie[];
@@ -19,7 +19,7 @@ const HeroCarousel = async ({ movies }: HeroCarouselProps) => {
       <Carousel className="min-w-93.75 w-full">
         <CarouselNext className="hidden absolute w-10 h-10 right-[3%] z-30 cursor-pointer lg:flex"></CarouselNext>
         <CarouselContent>
-          {movies.slice(1, 4).map((movie) => (
+          {movies.slice(0, 3).map((movie) => (
             <CarouselItem key={movie.id}>
               <img
                 className={`h-full w-full max-h-61.5  object-cover overflow-hidden sm:max-h-100 md:max-h-125 lg:max-h-150 xl:max-h-200  rounded-[5px]`}
