@@ -1,15 +1,12 @@
-import { MovieDetailsType } from "@/lib/movie-data-types";
-import { CastCrewsType } from "@/lib/movie-data-types";
+import { CastCrewsType, MovieDetailsType } from "@/lib/movie-data-types";
 import { Play } from "lucide-react";
 
 type MovieTrailerProps = {
   movie: MovieDetailsType;
+  castCrew: CastCrewsType;
 };
 
-export const MovieTrailer = ({
-  movie,
-  castCrew,
-}: MovieTrailerProps & CastCrewsType) => {
+export const MovieTrailer = ({ movie, castCrew }: MovieTrailerProps) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex gap-10 px-5 lg:justify-between">

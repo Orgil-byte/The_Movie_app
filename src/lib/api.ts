@@ -1,4 +1,4 @@
-import { FetchMovieDataType } from "./movie-data-types";
+import { Cast, FetchMovieDataType } from "./movie-data-types";
 import { MovieDetailsType } from "./movie-data-types";
 import { CastCrewsType } from "./movie-data-types";
 
@@ -62,11 +62,9 @@ export const getPopularMovieById = async (
   return movies;
 };
 
-export const getDirectorsActors = async (
-  movieId: string,
-): Promise<CastCrewsType> => {
+export const getDirectorsActors = async (movieId: string): Promise<Cast> => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?language=en-US&page=1`,
+    `https://api.themoviedb.org/3//movie/${movieId}/credits?language=en-US`,
     options,
   );
   const moviesCrews = await response.json();

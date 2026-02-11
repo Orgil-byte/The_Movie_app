@@ -3,13 +3,11 @@ import { MovieDetailsType } from "@/lib/movie-data-types";
 import { CastCrewsType } from "@/lib/movie-data-types";
 
 type MovieInfoProps = {
+  castCrew: CastCrewsType;
   movie: MovieDetailsType;
 };
 
-export const MovieInfo = ({
-  movie,
-  castCrew,
-}: MovieInfoProps & CastCrewsType) => {
+export const MovieInfo = ({ movie, castCrew }: MovieInfoProps) => {
   return (
     <div className="px-5 w-full flex flex-col gap-5">
       <div className="flex gap-8.5">
@@ -38,7 +36,7 @@ export const MovieInfo = ({
         <div className="flex flex-col gap-4">
           <div className="flex gap-13.25">
             <h3 className="font-bold dark:text-white">Director</h3>
-            <p className="dark:text-white"></p>
+            <p className="dark:text-white">{castCrew.crew}</p>
           </div>
           <div className="h-px w-full bg-[#E4E4E7] dark:bg-neutral-800"></div>
         </div>
