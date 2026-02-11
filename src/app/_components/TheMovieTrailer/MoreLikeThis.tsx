@@ -1,14 +1,13 @@
 import { ArrowRight } from "lucide-react";
 import Movies from "../Movielist/Movies";
-import { SimilarMovieTypes } from "@/lib/movie-data-types";
-
-
+import { ResultSimilar, SimilarMovieTypes } from "@/lib/movie-data-types";
+import Link from "next/link";
 
 type SimilarMovieProps = {
-  movie: SimilarMovieTypes;
+  movies: SimilarMovieTypes;
 };
 
-export const MoreLikeThis = ({movie} : SimilarMovieProps) => {
+export const MoreLikeThis = ({ movies = [] }: SimilarMovieProps) => {
   return (
     <div className="flex flex-col gap-8 px-5">
       <div className="flex justify-between">
@@ -21,20 +20,18 @@ export const MoreLikeThis = ({movie} : SimilarMovieProps) => {
         </div>
       </div>
       <div className="flex gap-5 overflow-scroll no-scrollbar">
-        <div> {moviesToDisplay.map((movie) => (
+        {movies.map((movie) => (
           <Link href={`/${movie.id}`} key={movie.id}>
             <Movies
               key={movie.id}
-              img={movie.poster_path}
+              img={movie.backdrop_path ?? "/HeroCarousel/moana2.jpg"}
               title={movie.title}
               rate={movie.vote_average}
               id={movie.id}
             />
           </Link>
         ))}
-        <Movies id={1} rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
-      
-      </div></div>
+      </div>
     </div>
   );
 };
