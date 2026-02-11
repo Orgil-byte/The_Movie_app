@@ -1,10 +1,10 @@
 import { ArrowRight } from "lucide-react";
 import Movies from "../Movielist/Movies";
-import { ResultSimilar, SimilarMovieTypes } from "@/lib/movie-data-types";
+import { ResultSimilar } from "@/lib/movie-data-types";
 import Link from "next/link";
 
 type SimilarMovieProps = {
-  movies: SimilarMovieTypes;
+  movies?: ResultSimilar[];
 };
 
 export const MoreLikeThis = ({ movies = [] }: SimilarMovieProps) => {
@@ -24,7 +24,7 @@ export const MoreLikeThis = ({ movies = [] }: SimilarMovieProps) => {
           <Link href={`/${movie.id}`} key={movie.id}>
             <Movies
               key={movie.id}
-              img={movie.backdrop_path ?? "/HeroCarousel/moana2.jpg"}
+              img={movie.poster_path ?? "/HeroCarousel/moana2.jpg"}
               title={movie.title}
               rate={movie.vote_average}
               id={movie.id}
