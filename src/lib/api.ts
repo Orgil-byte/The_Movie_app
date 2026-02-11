@@ -1,7 +1,8 @@
-import { Cast, FetchMovieDataType } from "./movie-data-types";
+import { FetchMovieDataType } from "./movie-data-types";
 import { MovieDetailsType } from "./movie-data-types";
 import { CastCrewsType } from "./movie-data-types";
 import { Trailers } from "./movie-data-types";
+import { SimilarMovieTypes } from "./movie-data-types";
 
 const token =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5Mzk5MzRjZmY0ZTZkYzYxYjM3OGYyZDI0NjQ1MDIyNiIsIm5iZiI6MTc3MDYwNzgwMy45MDgsInN1YiI6IjY5ODk1NGJiYjljNmUwNTAxMDhjOTQ0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ADU9lSBgWoG_Xg1CZAqAwxrYCvdJu7STsz4cxQu-PNI";
@@ -101,7 +102,7 @@ export const getMovieTrailers = async (movieId: string): Promise<Trailers> => {
 
 // ==================================================================================
 
-export const getSimilarMovies= async (movieId: string): Promise<Trailers> => {
+export const getSimilarMovies= async (movieId: string): Promise<SimilarMovieTypes> => {
   const response = await fetch(
     `https://api.themoviedb.org/3//movie/${movieId}/similar?language=en-US&page=1`,
     options,

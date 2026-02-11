@@ -21,8 +21,18 @@ export const MoreLikeThis = ({movie} : SimilarMovieProps) => {
         </div>
       </div>
       <div className="flex gap-5 overflow-scroll no-scrollbar">
-        <div>
-        <Movies id={movie.id} rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
+        <div> {moviesToDisplay.map((movie) => (
+          <Link href={`/${movie.id}`} key={movie.id}>
+            <Movies
+              key={movie.id}
+              img={movie.poster_path}
+              title={movie.title}
+              rate={movie.vote_average}
+              id={movie.id}
+            />
+          </Link>
+        ))}
+        <Movies id={1} rate={6.9} img="TheWatchMovie/wicked.jpg" title="wicked" />
       
       </div></div>
     </div>
