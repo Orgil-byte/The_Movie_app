@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   InputGroup,
   // InputGroupAddon,
-  // InputGroupButton,
+  InputGroupButton,
   InputGroupInput,
   // InputGroupText,
   // InputGroupTextarea,
@@ -14,6 +14,7 @@ import { DesktopSearch } from "./DesktopSearch";
 import { NavigationButtons } from "./NavigationButtons";
 import { NavigationSearch } from "./NavigationSearch";
 import Link from "next/link";
+import { Search } from "lucide-react";
 
 const NavigationMain = () => {
   const [searchActive, setSearchActive] = useState(false);
@@ -38,8 +39,14 @@ const NavigationMain = () => {
           <div className="gap-3 h-12 items-center hidden lg:flex">
             <DesktopSearch />
             <InputGroup className="w-94.75">
-              <InputGroupInput placeholder="Search..." />
+              <InputGroupInput
+                className="dark:text-white"
+                placeholder="Search..."
+              />
             </InputGroup>
+            <InputGroupButton className="text-black dark:text-white">
+              <Search />
+            </InputGroupButton>
           </div>
           <NavigationButtons search={search} />
         </div>

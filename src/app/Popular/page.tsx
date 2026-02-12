@@ -1,4 +1,4 @@
-import { PopularMovies } from "../_components/Movielist/MoviesMaps";
+import { PopularMovies } from "../_components/Movielist/MoviesMaps/PopularMovieMap";
 import { getPopularMovies } from "@/lib/api";
 import {
   Pagination,

@@ -1,6 +1,6 @@
-import { MovieTrailer } from "../_components/TheMovieTrailer/MovieTrailer";
-import { MovieInfo } from "../_components/TheMovieTrailer/MovieInfo";
-import { MoreLikeThis } from "../_components/TheMovieTrailer/MoreLikeThis";
+import { MovieTrailer } from "../_components/TheMovieDetail/MovieTrailer";
+import { MovieInfo } from "../_components/TheMovieDetail/MovieInfo";
+import { MoreLikeThis } from "../_components/TheMovieDetail/MoreLikeThis";
 import {
   getDirectorsActors,
   getPopularMovieById,

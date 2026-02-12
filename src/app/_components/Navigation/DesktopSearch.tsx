@@ -38,7 +38,7 @@ export const DesktopSearch = () => {
               {genres.map((genres) => (
                 <Badge
                   key={genres.title}
-                  className="font-semibold text-[12px]  text-black bg-white border border-gray-300 px-3.5 p-y h-5 dark:bg-black dark:text-white dark:border-neutral-800"
+                  className="cursor-pointer font-semibold text-[12px]  text-black bg-white border border-gray-300 px-3.5 p-y h-5 dark:bg-black dark:text-white dark:border-neutral-800"
                 >
                   <ListItem
                     className="font-semibold text-[12px] rounded-full"
@@ -58,19 +58,13 @@ export const DesktopSearch = () => {
 function ListItem({
   title,
   children,
-  href,
-  ...props
 }: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
   return (
-    <li {...props}>
-      <NavigationMenuLink asChild>
-        <Link href={href}>
-          <div className="flex flex-col gap-1 text-sm">
-            <div className="leading-none font-medium">{title}</div>
-            <div className="text-muted-foreground line-clamp-2">{children}</div>
-          </div>
-        </Link>
-      </NavigationMenuLink>
-    </li>
+    <NavigationMenuLink asChild>
+      <div className="flex flex-col gap-1 text-sm">
+        <div className="leading-none font-medium">{title}</div>
+        <div className="text-muted-foreground line-clamp-2">{children}</div>
+      </div>
+    </NavigationMenuLink>
   );
 }

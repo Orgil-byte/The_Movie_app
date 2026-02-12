@@ -1,4 +1,4 @@
-import { UpComingMovies } from "../_components/Movielist/MoviesMaps";
+import { UpComingMovies } from "../_components/Movielist/MoviesMaps/UpComingMovieMap";
 import { getUpComingMovies } from "@/lib/api";
 import {
   Pagination,

@@ -1,4 +1,4 @@
-import { TopRatedMovies } from "../_components/Movielist/MoviesMaps";
+import { TopRatedMovies } from "../_components/Movielist/MoviesMaps/TopRatedMovieMap";
 import { getTopRatedMovies } from "@/lib/api";
 import {
   Pagination,

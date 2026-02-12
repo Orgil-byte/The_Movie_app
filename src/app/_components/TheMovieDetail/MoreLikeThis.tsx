@@ -8,6 +8,9 @@ type SimilarMovieProps = {
 };
 
 export const MoreLikeThis = ({ movies = [] }: SimilarMovieProps) => {
+  const moviesToDisplay = movies.filter(
+    (movie) => movie.backdrop_path !== null && movie.poster_path !== null,
+  );
   return (
     <div className="flex flex-col gap-8 px-5">
       <div className="flex justify-between">
@@ -19,8 +22,8 @@ export const MoreLikeThis = ({ movies = [] }: SimilarMovieProps) => {
           <ArrowRight className="w-4 h-4 dark:text-white" />
         </div>
       </div>
-      <div className="flex gap-5 overflow-y-scroll overflow-x-hidden no-scrollbar">
-        {movies.slice(0, 5).map((movie) => (
+      <div className="flex gap-5 overflow-x-scroll overflow-y-hidden">
+        {moviesToDisplay.slice(0, 5).map((movie) => (
           <Link href={`/${movie.id}`} key={movie.id}>
             <Movies
               key={movie.id}

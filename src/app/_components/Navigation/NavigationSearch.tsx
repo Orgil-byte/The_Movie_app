@@ -16,7 +16,7 @@ import { navGenresData } from "@/app/_data/nav-genres-data";
 import {
   InputGroup,
   // InputGroupAddon,
-  // InputGroupButton,
+  InputGroupButton,
   InputGroupInput,
   // InputGroupText,
   // InputGroupTextarea,
@@ -64,10 +64,10 @@ export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="flex w-63">
-        <button className="cursor-pointer">
-          <Search className="w-4.5 text-gray-400 object-cover h-4.5" />
-        </button>
+      <div className="flex w-63 items-center">
+        <InputGroupButton className="flex items-center px-0 py-0">
+          <Search className="w-5 text-gray-400 object-cover h-5 p-0 " />
+        </InputGroupButton>
         <InputGroup className="border-none shadow-none">
           <InputGroupInput
             className="focus:shadow-none outline-none focus:outline-none focus:ring-0"

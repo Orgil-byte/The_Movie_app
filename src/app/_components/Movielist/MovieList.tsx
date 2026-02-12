@@ -1,6 +1,6 @@
-import { UpComingMovies } from "./MoviesMaps";
-import { PopularMovies } from "./MoviesMaps";
-import { TopRatedMovies } from "./MoviesMaps";
+import { UpComingMovies } from "./MoviesMaps/UpComingMovieMap";
+import { PopularMovies } from "./MoviesMaps/PopularMovieMap";
+import { TopRatedMovies } from "./MoviesMaps/TopRatedMovieMap";
 import {
   getPopularMovies,
   getTopRatedMovies,

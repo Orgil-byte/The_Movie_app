@@ -16,7 +16,7 @@ const Footer = () => {
           </p>
         </div>
         <p className="text-sm text-[#FAFAFA]">
-          © 2024 Movie Z. All Rights Reserved.
+          © 2026 Movie Z. All Rights Reserved.
         </p>
       </div>
       <div className="flex gap-12 lg:gap-20">
