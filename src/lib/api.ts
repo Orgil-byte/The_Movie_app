@@ -1,4 +1,4 @@
-import { FetchMovieDataType, ResultSimilar } from "./movie-data-types";
+import { FetchMovieDataType } from "./movie-data-types";
 import { MovieDetailsType } from "./movie-data-types";
 import { CastCrewsType } from "./movie-data-types";
 import { Trailers } from "./movie-data-types";
@@ -107,6 +107,19 @@ export const getSimilarMovies = async (
 ): Promise<SimilarMovieTypes> => {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`,
+    options,
+  );
+  const moviesSimilar = await response.json();
+  return moviesSimilar;
+};
+
+// ==================================================================================
+
+export const getSearchValue = async (
+  searchValue: string,
+): Promise<FetchMovieDataType> => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3//search/movie?query=${searchValue}&language=en-US&page=1`,
     options,
   );
   const moviesSimilar = await response.json();

@@ -65,9 +65,7 @@ export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
         </NavigationMenuList>
       </NavigationMenu>
       <div className="flex w-63 items-center">
-        <InputGroupButton className="flex items-center px-0 py-0">
-          <Search className="w-5 text-gray-400 object-cover h-5 p-0 " />
-        </InputGroupButton>
+        <Search className="w-5 text-gray-400 object-cover h-5 p-0 " />
         <InputGroup className="border-none shadow-none">
           <InputGroupInput
             className="focus:shadow-none outline-none focus:outline-none focus:ring-0"
