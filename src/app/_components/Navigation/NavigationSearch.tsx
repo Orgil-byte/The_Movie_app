@@ -33,7 +33,7 @@ export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="w-9 h-9 p-0 flex items-center justify-center pr-1 drop-shadow-[2px] shadow-sm dark:text-[#fafafa] dark:bg-neutral-800"></NavigationMenuTrigger>
+            <NavigationMenuTrigger className="w-9 h-9 p-0 flex items-center justify-center pr-1 drop-shadow-[2px] shadow-sm dark:text-[#fafafa] dark:bg-neutral-900"></NavigationMenuTrigger>
             <NavigationMenuContent className="p-5">
               <div className="flex flex-col gap-1">
                 <h1 className="font-semibold text-2xl leading-8 text-[#09090B] dark:text-[#FAFAFA]">
@@ -65,10 +65,9 @@ export const NavigationSearch = ({ closeSearch }: NavigationSearchProps) => {
         </NavigationMenuList>
       </NavigationMenu>
       <div className="flex w-63 items-center">
-        <Search className="w-5 text-gray-400 object-cover h-5 p-0 " />
         <InputGroup className="border-none shadow-none">
           <InputGroupInput
-            className="focus:shadow-none outline-none focus:outline-none focus:ring-0"
+            className="focus:shadow-none outline-none focus:outline-none focus:ring-0 dark:text-white"
             placeholder="Search"
           />
         </InputGroup>

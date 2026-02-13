@@ -18,11 +18,11 @@ export const MoreLikeThis = ({ movies = [] }: SimilarMovieProps) => {
           More like this
         </h2>
         <div className="flex gap-1 items-center">
-          <p className="font-medium dark:text-white">See more</p>
+          <p className="font-medium dark:text-white cursor-pointer">See more</p>
           <ArrowRight className="w-4 h-4 dark:text-white" />
         </div>
       </div>
-      <div className="flex gap-5 overflow-x-scroll overflow-y-hidden">
+      <div className="flex gap-5 overflow-x-scroll overflow-y-hidden no-scrollbar">
         {moviesToDisplay.slice(0, 5).map((movie) => (
           <Link href={`/${movie.id}`} key={movie.id}>
             <Movies
