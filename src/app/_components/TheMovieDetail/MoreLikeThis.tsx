@@ -17,17 +17,21 @@ export const MoreLikeThis = ({ movies = [] }: SimilarMovieProps) => {
         <h2 className="font-semibold text-[24px] dark:text-white">
           More like this
         </h2>
-        <div className="flex gap-1 items-center">
-          <p className="font-medium dark:text-white cursor-pointer">See more</p>
-          <ArrowRight className="w-4 h-4 dark:text-white" />
-        </div>
+        <Link href="/MoreLikeThisPage">
+          <div className="flex gap-1 items-center">
+            <p className="font-medium dark:text-white cursor-pointer">
+              See more
+            </p>
+            <ArrowRight className="w-4 h-4 dark:text-white" />
+          </div>
+        </Link>
       </div>
       <div className="flex gap-5 overflow-x-scroll overflow-y-hidden no-scrollbar">
         {moviesToDisplay.slice(0, 5).map((movie) => (
           <Link href={`/${movie.id}`} key={movie.id}>
             <Movies
               key={movie.id}
-              img={movie.poster_path ?? "/HeroCarousel/moana2.jpg"}
+              img={movie.poster_path ?? ""}
               title={movie.title}
               rate={movie.vote_average}
               id={movie.id}

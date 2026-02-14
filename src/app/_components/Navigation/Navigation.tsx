@@ -79,7 +79,7 @@ const NavigationMain = () => {
         </InputGroup>
         <X className="dark:text-white lg:hidden" onClick={closeSearch}></X>
         <div
-          className={`${movieResults.length !== 0 ? "" : "hidden"} dark:bg-[#09090B] p-3 dark:border-[#27272A] rounded-lg border flex flex-col bg-white w-144.25 h-fit absolute left-[-8%] top-full z-10`}
+          className={`${movieResults.length !== 0 ? "" : "hidden"} dark:bg-[#09090B] p-3 dark:border-[#27272A] rounded-lg border flex flex-col bg-white w-[80vw] h-fit absolute left-[5%] lg:w-144.25 lg:left-[-40%] top-full z-10`}
         >
           {moviesToDisplay.slice(0, 5).map((movie) => (
             <div key={movie.id}>
