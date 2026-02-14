@@ -19,7 +19,7 @@ const Movies = async ({ img, rate, title }: MovieList) => {
         <div className="flex items-center gap-1">
           <img
             className="h-4 w-4 object-cover"
-            src="HeroCarousel/Vector.svg"
+            src="/HeroCarousel/Vector.svg"
             alt="Star review"
           />
           <p className="text-[12px] font-medium text-[#09090B] xl:text-[14px] dark:text-[#fafafa]">

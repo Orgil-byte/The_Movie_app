@@ -18,7 +18,7 @@ export const MoreLikeThis = ({ movies = [], movieId }: SimilarMovieProps) => {
         <h2 className="font-semibold text-[24px] dark:text-white">
           More like this
         </h2>
-        <Link href={`/MoreLikeThisPage/${movieId}`}>
+        <Link href={`/similar/${movieId}`}>
           <div className="flex gap-1 items-center">
             <p className="font-medium dark:text-white cursor-pointer">
               See more
