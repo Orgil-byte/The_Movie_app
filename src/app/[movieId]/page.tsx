@@ -23,7 +23,7 @@ const TheMovie = async ({ params }: MoviePagePropsType) => {
       <div className="flex flex-col gap-8 w-full max-w-270">
         <MovieTrailer movie={movie} trailers={trailers} />
         <MovieInfo movie={movie} castCrew={castCrew} />
-        <MoreLikeThis movies={similarMovies?.results} />
+        <MoreLikeThis movies={similarMovies?.results} movieId={movieId} />
       </div>
     </div>
   );

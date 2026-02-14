@@ -5,9 +5,10 @@ import Link from "next/link";
 
 type SimilarMovieProps = {
   movies?: ResultSimilar[];
+  movieId: string;
 };
 
-export const MoreLikeThis = ({ movies = [] }: SimilarMovieProps) => {
+export const MoreLikeThis = ({ movies = [], movieId }: SimilarMovieProps) => {
   const moviesToDisplay = movies.filter(
     (movie) => movie.backdrop_path !== null && movie.poster_path !== null,
   );
@@ -17,7 +18,7 @@ export const MoreLikeThis = ({ movies = [] }: SimilarMovieProps) => {
         <h2 className="font-semibold text-[24px] dark:text-white">
           More like this
         </h2>
-        <Link href="/MoreLikeThisPage">
+        <Link href={`/MoreLikeThisPage/${movieId}`}>
           <div className="flex gap-1 items-center">
             <p className="font-medium dark:text-white cursor-pointer">
               See more
