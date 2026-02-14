@@ -12,16 +12,23 @@ import { Badge } from "@/components/ui/badge";
 import * as React from "react";
 import Link from "next/link";
 import { navGenresData } from "@/app/_data/nav-genres-data";
+type DesktopSearchPropsType = {
+  searchActive: boolean;
+};
 
-export const DesktopSearch = () => {
+export const DesktopSearch = ({ searchActive }: DesktopSearchPropsType) => {
   const [genres, setGenres] = useState(navGenresData);
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem className="hidden md:flex">
-          <NavigationMenuTrigger className="dark:text-white">
-            Genre
-          </NavigationMenuTrigger>
+        <NavigationMenuItem>
+          {!searchActive ? (
+            <NavigationMenuTrigger className="dark:text-white">
+              Genre
+            </NavigationMenuTrigger>
+          ) : (
+            <NavigationMenuTrigger className="dark:bg-neutral-900 border border-neutral-300 dark:text-white p-0 dark:border-neutral-800 pr-1 w-10 flex justify-center items-center h-10"></NavigationMenuTrigger>
+          )}
           <NavigationMenuContent className="p-5">
             <div className="flex flex-col gap-1">
               <h1 className="font-semibold text-2xl leading-8 text-[#09090B] dark:text-white">
@@ -34,7 +41,7 @@ export const DesktopSearch = () => {
             <div className="w-full py-4">
               <div className="w-full h-px bg-gray-300"></div>
             </div>
-            <ul className="flex w-144.25 gap-4 h-fit flex-wrap">
+            <ul className="flex w-77 lg:w-144.25 gap-4 h-fit flex-wrap">
               {genres.map((genres) => (
                 <Badge
                   key={genres.title}

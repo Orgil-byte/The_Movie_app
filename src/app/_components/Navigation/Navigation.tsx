@@ -12,10 +12,10 @@ import {
 import Logo from "@/components/ui/Logo";
 import { DesktopSearch } from "./DesktopSearch";
 import { NavigationButtons } from "./NavigationButtons";
-import { NavigationSearch } from "./NavigationSearch";
 import Link from "next/link";
 import { Movie } from "@/lib/movie-data-types";
 import { getSearchValue } from "@/lib/api";
+import { X } from "lucide-react";
 
 const NavigationMain = () => {
   const [searchActive, setSearchActive] = useState(false);
@@ -55,69 +55,68 @@ const NavigationMain = () => {
   );
 
   return (
-    <div className=" w-full max-w-7xl h-14.75 flex justify-between px-5 items-center md:mb-3 lg:px-0">
-      {searchActive ? (
-        <NavigationSearch closeSearch={closeSearch} />
-      ) : (
-        <div className="w-full max-w-7xl h-14.75 flex justify-between items-center">
-          <Link href="/">
-            <Logo />
-          </Link>
+    <div className="w-full max-w-7xl h-14.75 flex justify-between items-center px-5 md:mb-3 lg:p-0">
+      <Link className={searchActive ? "hidden" : "block"} href="/">
+        <Logo />
+      </Link>
 
-          <div className="gap-3 h-12 items-center hidden lg:flex relative">
-            <DesktopSearch />
-            <InputGroup className="w-94.75">
-              <InputGroupInput
-                onChange={onChangeInput}
-                value={searchValue}
-                className="dark:text-white"
-                placeholder="Search..."
-              />
-            </InputGroup>
-            <div
-              className={`${movieResults.length !== 0 ? "" : "hidden"} dark:bg-[#09090B] p-3 dark:border-[#27272A] rounded-lg border flex flex-col bg-white w-144.25 h-fit absolute left-[-8%] top-full z-10`}
-            >
-              {moviesToDisplay.slice(0, 5).map((movie) => (
-                <div key={movie.id}>
-                  <div className="p-2 flex gap-4 h-29 dark:hover:bg-neutral-900 hover:bg-neutral-200 transition-colors duration-200 ease-out cursor-pointer rounded-sm">
-                    <img
-                      className="h-25 w-17 rounded-md"
-                      src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                      alt="movie"
-                    />
-                    <div className="flex flex-col gap-3">
-                      <div>
-                        <h1 className="font-semibold text-xl dark:text-white">
-                          {movie.title}
-                        </h1>
-                        <div className="flex items-center gap-1">
-                          <img
-                            className="h-4 w-4 object-cover"
-                            src="HeroCarousel/Vector.svg"
-                            alt="Star review"
-                          />
-                          <p className="text-[12px] font-medium text-[#09090B] xl:text-[14px] dark:text-[#fafafa]">
-                            {movie.vote_average}
-                            <span className="font-normal  text-[#71717A]">
-                              /10
-                            </span>
-                          </p>
-                        </div>
-                      </div>
+      <div
+        className={
+          searchActive
+            ? `gap-3 h-12 items-center w-full flex justify-between lg:flex relative`
+            : `gap-3 h-12 items-center hidden lg:flex relative`
+        }
+      >
+        <DesktopSearch searchActive={searchActive} />
+
+        <InputGroup className="w-40">
+          <InputGroupInput
+            onChange={onChangeInput}
+            value={searchValue}
+            className="dark:text-white"
+            placeholder="Search..."
+          />
+        </InputGroup>
+        <X className="dark:text-white lg:hidden" onClick={closeSearch}></X>
+        <div
+          className={`${movieResults.length !== 0 ? "" : "hidden"} dark:bg-[#09090B] p-3 dark:border-[#27272A] rounded-lg border flex flex-col bg-white w-144.25 h-fit absolute left-[-8%] top-full z-10`}
+        >
+          {moviesToDisplay.slice(0, 5).map((movie) => (
+            <div key={movie.id}>
+              <div className="p-2 flex gap-4 h-29 dark:hover:bg-neutral-900 hover:bg-neutral-200 transition-colors duration-200 ease-out cursor-pointer rounded-sm">
+                <img
+                  className="h-25 w-17 rounded-md"
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt="movie"
+                />
+                <div className="flex flex-col gap-3">
+                  <div>
+                    <h1 className="font-semibold text-xl dark:text-white">
+                      {movie.title}
+                    </h1>
+                    <div className="flex items-center gap-1">
+                      <img
+                        className="h-4 w-4 object-cover"
+                        src="HeroCarousel/Vector.svg"
+                        alt="Star review"
+                      />
+                      <p className="text-[12px] font-medium text-[#09090B] xl:text-[14px] dark:text-[#fafafa]">
+                        {movie.vote_average}
+                        <span className="font-normal  text-[#71717A]">/10</span>
+                      </p>
                     </div>
                   </div>
-                  <div className="w-full h-px my-2.5 bg-[#E4E4E7] dark:bg-[#27272A]"></div>
                 </div>
-              ))}
-              <h3 className="font-medium text-sm dark:text-white py-2 px-4 rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-900">
-                See all results for "{searchValue}"
-              </h3>
+              </div>
+              <div className="w-full h-px my-2.5 bg-[#E4E4E7] dark:bg-[#27272A]"></div>
             </div>
-          </div>
-          <NavigationButtons search={search} />
+          ))}
+          <h3 className="font-medium text-sm dark:text-white py-2 px-4 rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-900">
+            See all results for "{searchValue}"
+          </h3>
         </div>
-      )}
-      <div className="flex flex-col gap-4"></div>
+      </div>
+      <NavigationButtons search={search} searchActive={searchActive} />
     </div>
   );
 };

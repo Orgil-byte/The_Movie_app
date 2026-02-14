@@ -1,6 +1,7 @@
 "use client";
 type NavigationButtonsProps = {
   search: () => void;
+  searchActive: boolean;
 };
 
 import { Moon, Search, Sun } from "lucide-react";
@@ -13,10 +14,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export const NavigationButtons = ({ search }: NavigationButtonsProps) => {
+export const NavigationButtons = ({
+  search,
+  searchActive,
+}: NavigationButtonsProps) => {
   const { setTheme } = useTheme();
   return (
-    <div className="h-9 flex gap-3">
+    <div className={searchActive ? "h-9 hidden gap-3" : "h-9 flex gap-3"}>
       <Button
         variant="outline"
         size="icon"
