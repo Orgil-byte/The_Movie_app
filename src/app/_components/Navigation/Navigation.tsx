@@ -21,10 +21,10 @@ const NavigationMain = () => {
   const [searchActive, setSearchActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [movieResults, setMovieResults] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const onChangeInput: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchValue(event.target.value);
-    console.log(searchValue);
   };
 
   useEffect(() => {
@@ -33,11 +33,15 @@ const NavigationMain = () => {
       return;
     }
 
+    setLoading(true);
+
     const timer = setTimeout(async () => {
       const data = await getSearchValue(searchValue);
 
       setMovieResults(data.results);
     }, 1000);
+
+    setLoading(false);
 
     return () => clearTimeout(timer);
   }, [searchValue]);
@@ -47,6 +51,11 @@ const NavigationMain = () => {
   };
 
   const closeSearch = () => {
+    setSearchActive(false);
+  };
+
+  const handleLinkClick = () => {
+    setMovieResults([]);
     setSearchActive(false);
   };
 
@@ -81,42 +90,53 @@ const NavigationMain = () => {
         <div
           className={`${movieResults.length !== 0 ? "" : "hidden"} dark:bg-[#09090B] p-3 dark:border-[#27272A] rounded-lg border flex flex-col bg-white w-[80vw] h-fit absolute left-[5%] lg:w-144.25 lg:left-[-40%] top-full z-10`}
         >
-          {moviesToDisplay.slice(0, 5).map((movie) => (
-            <Link key={movie.id} href={`/${movie.id}`}>
-              <div>
-                <div className="p-2 flex gap-4 h-29 dark:hover:bg-neutral-900 hover:bg-neutral-200 transition-colors duration-200 ease-out cursor-pointer rounded-sm">
-                  <img
-                    className="h-25 w-17 rounded-md"
-                    src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                    alt="movie"
-                  />
-                  <div className="flex flex-col gap-3">
-                    <div>
-                      <h1 className="font-semibold text-xl dark:text-white">
-                        {movie.title}
-                      </h1>
-                      <div className="flex items-center gap-1">
-                        <img
-                          className="h-4 w-4 object-cover"
-                          src="/HeroCarousel/Vector.svg"
-                          alt="Star review"
-                        />
-                        <p className="text-[12px] font-medium text-[#09090B] xl:text-[14px] dark:text-[#fafafa]">
-                          {movie.vote_average}
-                          <span className="font-normal  text-[#71717A]">
-                            /10
-                          </span>
-                        </p>
+          {loading ? (
+            <p>...Loading</p>
+          ) : (
+            moviesToDisplay.slice(0, 5).map((movie) => (
+              <Link
+                onClick={handleLinkClick}
+                key={movie.id}
+                href={`/${movie.id}`}
+              >
+                <div>
+                  <div className="p-2 flex gap-4 h-29 dark:hover:bg-neutral-900 hover:bg-neutral-200 transition-colors duration-200 ease-out cursor-pointer rounded-sm">
+                    <img
+                      className="h-25 w-17 rounded-md"
+                      src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                      alt="movie"
+                    />
+                    <div className="flex flex-col gap-3">
+                      <div>
+                        <h1 className="font-semibold text-xl dark:text-white">
+                          {movie.title}
+                        </h1>
+                        <div className="flex items-center gap-1">
+                          <img
+                            className="h-4 w-4 object-cover"
+                            src="/HeroCarousel/Vector.svg"
+                            alt="Star review"
+                          />
+                          <p className="text-[12px] font-medium text-[#09090B] xl:text-[14px] dark:text-[#fafafa]">
+                            {movie.vote_average}
+                            <span className="font-normal  text-[#71717A]">
+                              /10
+                            </span>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div className="w-full h-px my-2.5 bg-[#E4E4E7] dark:bg-[#27272A]"></div>
                 </div>
-                <div className="w-full h-px my-2.5 bg-[#E4E4E7] dark:bg-[#27272A]"></div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))
+          )}
           <Link href={`/search/${searchValue}`}>
-            <h3 className="font-medium text-sm dark:text-white py-2 px-4 rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-900">
+            <h3
+              onClick={handleLinkClick}
+              className="font-medium cursor-pointer text-sm dark:text-white py-2 px-4 rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-900"
+            >
               See all results for "{searchValue}"
             </h3>
           </Link>

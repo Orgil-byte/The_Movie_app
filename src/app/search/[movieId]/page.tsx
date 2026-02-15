@@ -20,7 +20,7 @@ const SearchSeeMore = async ({ params }: SearchSeeMoreProps) => {
       <div className="px-5 flex flex-col w-full min-w-93.75 gap-8 md:px-10 lg:px-20 lg:gap-13 max-w-360">
         <div className="h-9 flex justify-between items-center w-full">
           <p className="font-semibold text-[24px] leading-8 tracking-[-2.5%] dark:text-[#fafafa]">
-            More Like This
+            Search results:
           </p>
         </div>
 
