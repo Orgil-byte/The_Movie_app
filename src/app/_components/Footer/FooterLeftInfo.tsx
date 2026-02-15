@@ -6,7 +6,7 @@ const FooterLeftInfo = () => {
         <div className="flex gap-3 items-center">
           <img
             className="w-4 h-4 object-cover"
-            src="Footer/mail.svg"
+            src="/Footer/mail.svg"
             alt="Email"
           />
           <div>
@@ -17,7 +17,7 @@ const FooterLeftInfo = () => {
         <div className="flex gap-3 items-center">
           <img
             className="w-4 h-4 object-cover"
-            src="Footer/phone.svg"
+            src="/Footer/phone.svg"
             alt="Email"
           />
           <div>
