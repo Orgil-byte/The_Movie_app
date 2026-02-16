@@ -10,7 +10,6 @@ import {
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import * as React from "react";
-import Link from "next/link";
 import { navGenresData } from "@/app/_data/nav-genres-data";
 type DesktopSearchPropsType = {
   searchActive: boolean;

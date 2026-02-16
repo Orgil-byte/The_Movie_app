@@ -1,13 +1,6 @@
 "use client";
-import React, { ChangeEventHandler, useEffect, useState } from "react";
-import {
-  InputGroup,
-  // InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-  // InputGroupText,
-  // InputGroupTextarea,
-} from "@/components/ui/input-group";
+import React, { ChangeEventHandler, useEffect, useState, useRef } from "react";
+import { InputGroup, InputGroupInput } from "@/components/ui/input-group";
 
 import Logo from "@/components/ui/Logo";
 import { DesktopSearch } from "./DesktopSearch";
@@ -26,6 +19,26 @@ const NavigationMain = () => {
   const onChangeInput: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchValue(event.target.value);
   };
+
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        setSearchActive(false);
+        setMovieResults([]);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     if (searchValue === "") {
@@ -54,11 +67,6 @@ const NavigationMain = () => {
     setSearchActive(false);
   };
 
-  const handleLinkClick = () => {
-    setMovieResults([]);
-    setSearchActive(false);
-  };
-
   const moviesToDisplay = movieResults.filter(
     (movie) => movie.backdrop_path !== null && movie.poster_path !== null,
   );
@@ -77,15 +85,16 @@ const NavigationMain = () => {
         }
       >
         <DesktopSearch searchActive={searchActive} />
-
-        <InputGroup className="w-40">
-          <InputGroupInput
-            onChange={onChangeInput}
-            value={searchValue}
-            className="dark:text-white"
-            placeholder="Search..."
-          />
-        </InputGroup>
+        <div ref={searchRef}>
+          <InputGroup className="w-40">
+            <InputGroupInput
+              onChange={onChangeInput}
+              value={searchValue}
+              className="dark:text-white"
+              placeholder="Search..."
+            />
+          </InputGroup>
+        </div>
         <X className="dark:text-white lg:hidden" onClick={closeSearch}></X>
         <div
           className={`${movieResults.length !== 0 ? "" : "hidden"} dark:bg-[#09090B] p-3 dark:border-[#27272A] rounded-lg border flex flex-col bg-white w-[80vw] h-fit absolute left-[5%] lg:w-144.25 lg:left-[-40%] top-full z-10`}
@@ -94,11 +103,7 @@ const NavigationMain = () => {
             <p>...Loading</p>
           ) : (
             moviesToDisplay.slice(0, 5).map((movie) => (
-              <Link
-                onClick={handleLinkClick}
-                key={movie.id}
-                href={`/${movie.id}`}
-              >
+              <Link key={movie.id} href={`/${movie.id}`}>
                 <div>
                   <div className="p-2 flex gap-4 h-29 dark:hover:bg-neutral-900 hover:bg-neutral-200 transition-colors duration-200 ease-out cursor-pointer rounded-sm">
                     <img
@@ -133,10 +138,7 @@ const NavigationMain = () => {
             ))
           )}
           <Link href={`/search/${searchValue}`}>
-            <h3
-              onClick={handleLinkClick}
-              className="font-medium cursor-pointer text-sm dark:text-white py-2 px-4 rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-900"
-            >
+            <h3 className="font-medium cursor-pointer text-sm dark:text-white py-2 px-4 rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-900">
               See all results for "{searchValue}"
             </h3>
           </Link>

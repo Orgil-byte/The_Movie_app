@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { SeeMore } from "./SeeMore";
 
 type Category = {
