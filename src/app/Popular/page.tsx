@@ -23,15 +23,13 @@ const PopularPage = async () => {
                 className="dark:text-white dark:bg-neutral-900"
                 href="#"
               />
-            </PaginationItem>
-            {[1, 2, 3].map((page) => {
-              <PaginationItem>
-                <PaginationLink className="dark:text-white" href="#">
-                  {page}
-                </PaginationLink>
-              </PaginationItem>;
-            })}
-            <PaginationItem>
+              {[1, 2, 3].map((page) => (
+                <PaginationItem key={page}>
+                  <PaginationLink className="dark:text-white" href="#">
+                    {page}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
               <PaginationNext
                 className="dark:text-white dark:bg-neutral-900"
                 href="#"
