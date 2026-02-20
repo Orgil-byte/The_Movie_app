@@ -26,6 +26,11 @@ const PopularPage = () => {
 
   if (!data) return <div>Loading...</div>;
 
+  const getPageNumbers = () => {
+    if (page === 1) return [1, 2, 3];
+    return [page - 1, page, page + 1];
+  };
+
   return (
     <div className="w-full flex flex-col items-center my-10">
       <div className="px-5 flex flex-col w-full min-w-93.75 gap-8 md:px-10 lg:px-20 lg:gap-13 max-w-360">
@@ -39,7 +44,7 @@ const PopularPage = () => {
                 onClick={() => page > 1 && setPage(page - 1)}
               />
             </PaginationItem>
-            {[1, 2, 3].map((pageNumber) => (
+            {getPageNumbers().map((pageNumber) => (
               <PaginationItem
                 key={pageNumber}
                 onClick={() => setPage(pageNumber)}

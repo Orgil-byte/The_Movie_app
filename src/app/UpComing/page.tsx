@@ -14,7 +14,7 @@ import {
 import { FetchMovieDataType } from "@/lib/movie-data-types";
 
 const UpComingPage = () => {
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
   const [data, setData] = useState<FetchMovieDataType | null>(null);
 
   useEffect(() => {
@@ -26,6 +26,11 @@ const UpComingPage = () => {
   }, [page]);
 
   if (!data) return <div>Loading...</div>;
+
+  const getPageNumbers = () => {
+    if (page === 1) return [1, 2, 3];
+    return [page - 1, page, page + 1];
+  };
 
   return (
     <div className="w-full flex flex-col items-center my-10">
@@ -40,7 +45,7 @@ const UpComingPage = () => {
                 onClick={() => page > 1 && setPage(page - 1)}
               />
             </PaginationItem>
-            {[1, 2, 3].map((pageNumber) => (
+            {getPageNumbers().map((pageNumber) => (
               <PaginationItem
                 key={pageNumber}
                 onClick={() => setPage(pageNumber)}

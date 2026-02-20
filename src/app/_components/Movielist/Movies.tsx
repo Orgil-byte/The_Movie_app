@@ -5,7 +5,7 @@ type MovieList = {
   id: number;
 };
 
-const Movies = async ({ img, rate, title }: MovieList) => {
+const Movies = ({ img, rate, title }: MovieList) => {
   const basImgurl = "https://image.tmdb.org/t/p/w500";
 
   return (
