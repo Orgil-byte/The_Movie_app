@@ -1,3 +1,5 @@
+"use client";
+import { useState, useEffect } from "react";
 import { TopRatedMovies } from "../_components/Movielist/MoviesMaps/TopRatedMovieMap";
 import { getTopRatedMovies } from "@/lib/api";
 import {
@@ -9,9 +11,22 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { FetchMovieDataType } from "@/lib/movie-data-types";
 
-const TopRatedPage = async () => {
-  const data = await getTopRatedMovies();
+const TopRatedPage = () => {
+  const [page, setPage] = useState(2);
+  const [data, setData] = useState<FetchMovieDataType | null>(null);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const result = await getTopRatedMovies(page);
+      setData(result);
+    };
+    fetchMovies();
+  }, [page]);
+
+  if (!data) return <div>Loading...</div>;
+
   return (
     <div className="w-full flex flex-col items-center my-10">
       <div className="px-5 flex flex-col w-full min-w-93.75 gap-8 md:px-10 lg:px-20 lg:gap-13 max-w-360">
@@ -22,23 +37,23 @@ const TopRatedPage = async () => {
               <PaginationPrevious
                 className="dark:text-white dark:bg-neutral-900"
                 href="#"
+                onClick={() => page > 1 && setPage(page - 1)}
               />
             </PaginationItem>
-            <PaginationItem>
-              <PaginationLink className="dark:text-white" href="#">
-                1
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink className="dark:text-white" href="#" isActive>
-                2
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink className="dark:text-white" href="#">
-                3
-              </PaginationLink>
-            </PaginationItem>
+            {[1, 2, 3].map((pageNumber) => (
+              <PaginationItem
+                key={pageNumber}
+                onClick={() => setPage(pageNumber)}
+              >
+                <PaginationLink
+                  className="dark:text-white"
+                  href="#"
+                  isActive={pageNumber === page}
+                >
+                  {pageNumber}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
             <PaginationItem>
               <PaginationEllipsis className="dark:text-white" />
             </PaginationItem>
@@ -46,6 +61,7 @@ const TopRatedPage = async () => {
               <PaginationNext
                 className="dark:text-white dark:bg-neutral-900"
                 href="#"
+                onClick={() => setPage(page + 1)}
               />
             </PaginationItem>
           </PaginationContent>
