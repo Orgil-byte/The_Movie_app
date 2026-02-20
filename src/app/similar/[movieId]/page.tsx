@@ -1,19 +1,45 @@
+"use client";
+import { useState, useEffect } from "react";
 import { getSimilarMovies } from "@/lib/api";
 import Movies from "@/app/_components/Movielist/Movies";
 import Link from "next/link";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { SimilarMovieTypes } from "@/lib/movie-data-types";
 
 type MoreLikeThisPageProps = {
   params: Promise<{ movieId: string }>;
 };
 
-const MoreLikeThisPage = async ({ params }: MoreLikeThisPageProps) => {
-  const { movieId } = await params;
+// Inner client component that receives movieId as a resolved string
+const MoreLikeThisContent = ({ movieId }: { movieId: string }) => {
+  const [page, setPage] = useState(1);
+  const [data, setData] = useState<SimilarMovieTypes | null>(null);
 
-  const data = await getSimilarMovies(movieId);
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const result = await getSimilarMovies(movieId, page);
+      setData(result);
+    };
+    fetchMovies();
+  }, [movieId, page]);
+
+  if (!data) return <div>Loading...</div>;
 
   const moviesToDisplay = data.results.filter(
     (movie) => movie.poster_path !== null && movie.backdrop_path !== null,
   );
+
+  const getPageNumbers = () => {
+    if (page === 1) return [1, 2, 3];
+    return [page - 1, page, page + 1];
+  };
 
   return (
     <div className="w-full flex flex-col items-center my-10">
@@ -36,9 +62,50 @@ const MoreLikeThisPage = async ({ params }: MoreLikeThisPageProps) => {
             </Link>
           ))}
         </div>
+
+        <Pagination className="justify-end">
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                className="dark:text-white dark:bg-neutral-900"
+                href="#"
+                onClick={() => page > 1 && setPage(page - 1)}
+              />
+            </PaginationItem>
+            {getPageNumbers().map((pageNumber) => (
+              <PaginationItem
+                key={pageNumber}
+                onClick={() => setPage(pageNumber)}
+              >
+                <PaginationLink
+                  className="dark:text-white"
+                  href="#"
+                  isActive={pageNumber === page}
+                >
+                  {pageNumber}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+            <PaginationItem>
+              <PaginationNext
+                className="dark:text-white dark:bg-neutral-900"
+                href="#"
+                onClick={() => page < data.total_pages && setPage(page + 1)}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </div>
     </div>
   );
+};
+
+// Page component — unwraps the async params then renders client content
+import { use } from "react";
+
+const MoreLikeThisPage = ({ params }: MoreLikeThisPageProps) => {
+  const { movieId } = use(params);
+  return <MoreLikeThisContent movieId={movieId} />;
 };
 
 export default MoreLikeThisPage;

@@ -15,12 +15,11 @@ const NavigationMain = () => {
   const [searchValue, setSearchValue] = useState("");
   const [movieResults, setMovieResults] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
 
   const onChangeInput: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchValue(event.target.value);
   };
-
-  const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -34,7 +33,6 @@ const NavigationMain = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -47,14 +45,11 @@ const NavigationMain = () => {
     }
 
     setLoading(true);
-
     const timer = setTimeout(async () => {
       const data = await getSearchValue(searchValue);
-
       setMovieResults(data.results);
+      setLoading(false);
     }, 1000);
-
-    setLoading(false);
 
     return () => clearTimeout(timer);
   }, [searchValue]);
@@ -78,6 +73,7 @@ const NavigationMain = () => {
       </Link>
 
       <div
+        ref={searchRef}
         className={
           searchActive
             ? `gap-3 h-12 items-center w-full flex justify-between lg:flex relative`
@@ -85,19 +81,17 @@ const NavigationMain = () => {
         }
       >
         <DesktopSearch searchActive={searchActive} />
-        <div ref={searchRef}>
-          <InputGroup className="w-40">
-            <InputGroupInput
-              onChange={onChangeInput}
-              value={searchValue}
-              className="dark:text-white"
-              placeholder="Search..."
-            />
-          </InputGroup>
-        </div>
-        <X className="dark:text-white lg:hidden" onClick={closeSearch}></X>
+        <InputGroup className="w-40">
+          <InputGroupInput
+            onChange={onChangeInput}
+            value={searchValue}
+            className="dark:text-white"
+            placeholder="Search..."
+          />
+        </InputGroup>
+        <X className="dark:text-white lg:hidden" onClick={closeSearch} />
         <div
-          className={`${movieResults.length !== 0 ? "" : "hidden"} dark:bg-[#09090B] p-3 dark:border-[#27272A] rounded-lg border flex flex-col bg-white w-[80vw] h-fit absolute left-[5%] lg:w-144.25 lg:left-[-40%] top-full z-10`}
+          className={`${moviesToDisplay.length !== 0 ? "" : "hidden"} dark:bg-[#09090B] p-3 dark:border-[#27272A] rounded-lg border flex flex-col bg-white w-[80vw] h-fit absolute left-[5%] lg:w-144.25 lg:left-[-40%] top-full z-10`}
         >
           {loading ? (
             <p>...Loading</p>
@@ -124,7 +118,7 @@ const NavigationMain = () => {
                           />
                           <p className="text-[12px] font-medium text-[#09090B] xl:text-[14px] dark:text-[#fafafa]">
                             {movie.vote_average}
-                            <span className="font-normal  text-[#71717A]">
+                            <span className="font-normal text-[#71717A]">
                               /10
                             </span>
                           </p>

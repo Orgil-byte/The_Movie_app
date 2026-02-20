@@ -9,9 +9,6 @@ type SimilarMovieProps = {
 };
 
 export const MoreLikeThis = ({ movies = [], movieId }: SimilarMovieProps) => {
-  const moviesToDisplay = movies.filter(
-    (movie) => movie.backdrop_path !== null && movie.poster_path !== null,
-  );
   return (
     <div className="flex flex-col gap-8 px-5">
       <div className="flex justify-between">
@@ -28,7 +25,7 @@ export const MoreLikeThis = ({ movies = [], movieId }: SimilarMovieProps) => {
         </Link>
       </div>
       <div className="flex gap-5 overflow-x-scroll overflow-y-hidden no-scrollbar">
-        {moviesToDisplay.slice(0, 5).map((movie) => (
+        {movies.slice(0, 5).map((movie) => (
           <Link href={`/${movie.id}`} key={movie.id}>
             <Movies
               key={movie.id}
