@@ -9,4 +9,3 @@ export const getNowPlayingMovies = async (): Promise<FetchMovieDataType> => {
   const movies = await response.json();
   return movies;
 };
-getNowPlayingMovies();
