@@ -7,4 +7,5 @@ export const options = {
     accept: "application/json",
     Authorization: `Bearer ${token}`,
   },
+  cache: "no-store" as RequestCache,
 };
