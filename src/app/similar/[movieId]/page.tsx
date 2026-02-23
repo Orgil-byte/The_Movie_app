@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { getSimilarMovies } from "@/lib/api";
 import Movies from "@/app/_components/Movielist/Movies";
 import Link from "next/link";
@@ -17,7 +17,6 @@ type MoreLikeThisPageProps = {
   params: Promise<{ movieId: string }>;
 };
 
-// Inner client component that receives movieId as a resolved string
 const MoreLikeThisContent = ({ movieId }: { movieId: string }) => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState<SimilarMovieTypes | null>(null);
@@ -99,9 +98,6 @@ const MoreLikeThisContent = ({ movieId }: { movieId: string }) => {
     </div>
   );
 };
-
-// Page component — unwraps the async params then renders client content
-import { use } from "react";
 
 const MoreLikeThisPage = ({ params }: MoreLikeThisPageProps) => {
   const { movieId } = use(params);

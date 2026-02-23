@@ -7,16 +7,27 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import * as React from "react";
 import { navGenresData } from "@/app/_data/nav-genres-data";
+import { getMovieGenres } from "@/lib/api";
+import { Genre } from "@/lib/movie-data-types";
 type DesktopSearchPropsType = {
   searchActive: boolean;
 };
 
 export const DesktopSearch = ({ searchActive }: DesktopSearchPropsType) => {
-  const [genres, setGenres] = useState(navGenresData);
+  const [genres, setGenres] = useState<Genre[]>([]);
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const genre = await getMovieGenres();
+      const genres = genre.genres;
+      setGenres(genres);
+    };
+    fetchMovies();
+  }, []);
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -41,16 +52,16 @@ export const DesktopSearch = ({ searchActive }: DesktopSearchPropsType) => {
               <div className="w-full h-px bg-gray-300"></div>
             </div>
             <ul className="flex w-77 lg:w-144.25 gap-4 h-fit flex-wrap">
-              {genres.map((genres) => (
+              {genres.map((genre) => (
                 <Badge
-                  key={genres.title}
+                  key={genre.id}
                   className="cursor-pointer font-semibold text-[12px]  text-black bg-white border border-gray-300 px-3.5 p-y h-5 dark:bg-black dark:text-white dark:border-neutral-800"
                 >
                   <ListItem
                     className="font-semibold text-[12px] rounded-full"
-                    title={genres.title}
-                    href={genres.href}
-                  ></ListItem>
+                    title={genre.name}
+                    href={`/genre/${genre.id}`}
+                  />
                 </Badge>
               ))}
             </ul>
@@ -64,13 +75,14 @@ export const DesktopSearch = ({ searchActive }: DesktopSearchPropsType) => {
 function ListItem({
   title,
   children,
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+  href,
+}: React.ComponentPropsWithoutRef<"a"> & { href: string }) {
   return (
     <NavigationMenuLink asChild>
-      <div className="flex flex-col gap-1 text-sm">
+      <a href={href} className="flex flex-col gap-1 text-sm">
         <div className="leading-none font-medium">{title}</div>
         <div className="text-muted-foreground line-clamp-2">{children}</div>
-      </div>
+      </a>
     </NavigationMenuLink>
   );
 }

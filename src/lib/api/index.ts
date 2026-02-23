@@ -8,3 +8,4 @@ export * from "./similarMovies";
 export * from "./topRated";
 export * from "./popularMoviesId";
 export * from "./upComingMovies";
+export * from "./genre";
