@@ -49,7 +49,7 @@ const NavigationMain = () => {
       const data = await getSearchValue(searchValue);
       setMovieResults(data.results);
       setLoading(false);
-    }, 1000);
+    }, 400);
 
     return () => clearTimeout(timer);
   }, [searchValue]);
@@ -62,10 +62,7 @@ const NavigationMain = () => {
     setSearchActive(false);
   };
 
-  const moviesToDisplay = movieResults.filter(
-    (movie) => movie.backdrop_path !== null && movie.poster_path !== null,
-  );
-
+  const moviesToDisplay = movieResults;
   return (
     <div className="w-full max-w-7xl h-14.75 flex justify-between items-center px-5 md:mb-3 lg:p-0">
       <Link className={searchActive ? "hidden" : "block"} href="/">
@@ -140,7 +137,7 @@ const NavigationMain = () => {
               </Link>
             </div>
           ) : (
-            <div className="dark:text-white text-4xl">No results found</div>
+            <div className="dark:text-white text-base">No results found</div>
           )}
         </div>
       </div>
