@@ -15,6 +15,7 @@ const NavigationMain = () => {
   const [searchValue, setSearchValue] = useState("");
   const [movieResults, setMovieResults] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
+  const [showResults, setShowResults] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
   const onChangeInput: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -29,6 +30,7 @@ const NavigationMain = () => {
       ) {
         setSearchActive(false);
         setMovieResults([]);
+        setShowResults(false);
       }
     };
 
@@ -41,6 +43,7 @@ const NavigationMain = () => {
   useEffect(() => {
     if (searchValue === "") {
       setMovieResults([]);
+      setShowResults(false);
       return;
     }
 
@@ -48,6 +51,7 @@ const NavigationMain = () => {
     const timer = setTimeout(async () => {
       const data = await getSearchValue(searchValue);
       setMovieResults(data.results);
+      setShowResults(true);
       setLoading(false);
     }, 400);
 
@@ -88,7 +92,7 @@ const NavigationMain = () => {
         </InputGroup>
         <X className="dark:text-white lg:hidden" onClick={closeSearch} />
         <div
-          className={`${searchValue.split("").length !== 0 ? "" : "hidden"} dark:bg-[#09090B] p-3 dark:border-[#27272A] rounded-lg border flex flex-col bg-white w-[80vw] h-fit absolute left-[5%] lg:w-144.25 lg:left-[-40%] top-full z-10`}
+          className={`${showResults ? "" : "hidden"} dark:bg-[#09090B] p-3 dark:border-[#27272A] rounded-lg border flex flex-col bg-white w-[80vw] h-fit absolute left-[5%] lg:w-144.25 lg:left-[-40%] top-full z-10`}
         >
           {moviesToDisplay.length !== 0 ? (
             <div>
@@ -137,7 +141,9 @@ const NavigationMain = () => {
               </Link>
             </div>
           ) : (
-            <div className="dark:text-white text-base">No results found</div>
+            <div className="dark:text-white text-base h-23.75 flex justify-center items-center">
+              {loading ? "Loading..." : "No results found"}
+            </div>
           )}
         </div>
       </div>

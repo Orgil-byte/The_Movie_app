@@ -10,7 +10,6 @@ import {
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import * as React from "react";
-import { navGenresData } from "@/app/_data/nav-genres-data";
 import { getMovieGenres } from "@/lib/api";
 import { Genre } from "@/lib/movie-data-types";
 type DesktopSearchPropsType = {
