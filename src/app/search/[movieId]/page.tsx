@@ -52,14 +52,14 @@ const SearchContent = ({ query }: { query: string }) => {
 
   return (
     <div className="max-w-7xl sm:px-5 lg:px-0">
-      <h1 className="text-[30px] font-semibold text-[#09090B] dark:text-white">
+      <h1 className="px-5 text-[30px] font-semibold text-[#09090B] dark:text-white">
         Search results
       </h1>
-      <div className="flex flex-col sm:flex-row gap-7 items-baseline">
+      <div className="flex flex-col sm:flex-row gap-7 sm:items-baseline">
         <div className="w-full flex flex-col items-center my-10">
           <div className="border-none sm:border-r pr-0 flex-col w-full min-w-93.75 gap-8  lg:gap-13 max-w-360  border-[#E4E4E7] sm:pr-7 dark:border-[#27272A]">
             <div className="h-9 flex justify-between items-center w-full">
-              <p className="font-semibold text-[20px] leading-8 tracking-[-2.5%] dark:text-[#fafafa] pb-10">
+              <p className="px-5 font-semibold text-[20px] leading-8 tracking-[-2.5%] dark:text-[#fafafa] pb-10">
                 {data.results.length} results for "{query}"
               </p>
             </div>
@@ -77,7 +77,7 @@ const SearchContent = ({ query }: { query: string }) => {
               ))}
             </div>
 
-            <Pagination className="justify-end">
+            <Pagination className="justify-end pt-10">
               <PaginationContent>
                 <PaginationItem>
                   <PaginationPrevious
@@ -111,10 +111,10 @@ const SearchContent = ({ query }: { query: string }) => {
             </Pagination>
           </div>
         </div>
-        <div className="w-full max-w-96.75 flex flex-col gap-5">
+        <div className="w-full max-w-96.75 flex flex-col gap-5 px-5">
           <div className="flex flex-col gap-1">
             <h1 className="font-semibold text-2xl leading-8 text-[#09090B] dark:text-white">
-              Genres
+              Search by genre
             </h1>
             <p className="text-base text-[#09090B] dark:text-white">
               See lists of movies by genre
