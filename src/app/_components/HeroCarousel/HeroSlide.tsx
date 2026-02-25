@@ -2,7 +2,7 @@
 import NameReviewStatus from "./NameReviewStatus";
 import WatchLaterBtn from "./WatchLaterBtn";
 import { Movie, Trailers } from "@/lib/movie-data-types";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type HeroSlideProps = {
   movie: Movie;
@@ -10,10 +10,11 @@ type HeroSlideProps = {
 };
 
 const HeroSlide = ({ movie, trailers }: HeroSlideProps) => {
+  const router = useRouter();
   const basImgurl = "https://image.tmdb.org/t/p/original";
 
   return (
-    <Link href={`/${movie.id}`}>
+    <div className="cursor-pointer" onClick={() => router.push(`/${movie.id}`)}>
       <img
         className="h-full w-full max-h-61.5 object-cover overflow-hidden sm:max-h-100 md:max-h-125 lg:max-h-150 xl:max-h-200 rounded-[5px]"
         src={basImgurl + movie.backdrop_path}
@@ -28,7 +29,7 @@ const HeroSlide = ({ movie, trailers }: HeroSlideProps) => {
           <WatchLaterBtn trailers={trailers} />
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

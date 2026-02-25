@@ -49,7 +49,7 @@ const SearchContent = ({ query }: { query: string }) => {
     if (page === 1) return [1, 2, 3];
     return [page - 1, page, page + 1];
   };
-
+  console.log(typeof query);
   return (
     <div className="max-w-7xl sm:px-5 lg:px-0">
       <h1 className="px-5 text-[30px] font-semibold text-[#09090B] dark:text-white">
@@ -129,7 +129,7 @@ const SearchContent = ({ query }: { query: string }) => {
                 <ListItem
                   className="font-semibold text-[12px] rounded-full"
                   title={genre.name}
-                  href={`/genre/${genre.id}`}
+                  href={`/search/${genre.id}`}
                 />
               </Badge>
             ))}
