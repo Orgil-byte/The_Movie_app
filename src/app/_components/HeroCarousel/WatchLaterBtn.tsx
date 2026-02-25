@@ -25,7 +25,7 @@ const WatchLaterBtn = ({ trailers }: MovieTrailerProps) => {
     ) ||
     trailers.results.find((t) => t.site === "YouTube");
   return (
-    <Dialog className="w-full h-screen bg-black">
+    <Dialog className="w-full h-screen bg-black z-20">
       <DialogTrigger
         className="dark:lg:bg-white dark:lg:hover:bg-neutral-800 border-0 text-black bg-neutral-100 h-10 w-36.25 flex justify-center items-center  cursor-pointer rounded-md md:h-12 md:w-40 lg:w-36.25 lg:h-10 lg:bg-white lg:mt-1.5  lg:hover:bg-neutral-800 lg:hover:text-white transition-all ease-in-out duration-200 delay-75"
         asChild
