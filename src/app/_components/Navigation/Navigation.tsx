@@ -97,7 +97,7 @@ const NavigationMain = () => {
           {moviesToDisplay.length !== 0 ? (
             <div>
               {loading ? (
-                <p>...Loading</p>
+                <p className="dark:text-white text-center p-10">...Loading</p>
               ) : (
                 moviesToDisplay.slice(0, 5).map((movie) => (
                   <Link key={movie.id} href={`/${movie.id}`}>

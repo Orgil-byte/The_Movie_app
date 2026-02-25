@@ -124,7 +124,7 @@ const SearchContent = ({ query }: { query: string }) => {
             {genres.map((genre) => (
               <Badge
                 key={genre.id}
-                className="cursor-pointer font-semibold text-[12px]  text-black bg-white border border-gray-300 px-3.5 p-y h-5 dark:bg-black dark:text-white dark:border-neutral-800"
+                className="cursor-pointer font-semibold text-[12px]  text-black bg-white border border-gray-300 px-3.5 py h-5 dark:bg-black dark:text-white dark:border-neutral-800"
               >
                 <ListItem
                   className="font-semibold text-[12px] rounded-full"

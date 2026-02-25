@@ -14,7 +14,7 @@ type HeroCarouselProps = {
 };
 
 const HeroCarousel = async ({ movies }: HeroCarouselProps) => {
-  const theMovies = movies.slice(0, 3);
+  const theMovies = movies.slice(17, 20);
   const trailersPerMovie: Trailers[] = await Promise.all(
     theMovies.map((movie) => getMovieTrailers(movie.id.toString())),
   );

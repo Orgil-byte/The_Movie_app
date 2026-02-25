@@ -8,6 +8,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { useState, useEffect } from "react";
+import { useQueryState } from "nuqs";
 import { Badge } from "@/components/ui/badge";
 import * as React from "react";
 import { getMovieGenres } from "@/lib/api";
