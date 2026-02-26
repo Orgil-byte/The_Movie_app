@@ -8,25 +8,49 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { useState, useEffect } from "react";
-import { useQueryState } from "nuqs";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import * as React from "react";
 import { getMovieGenres } from "@/lib/api";
 import { Genre } from "@/lib/movie-data-types";
+
 type DesktopSearchPropsType = {
   searchActive: boolean;
 };
 
 export const DesktopSearch = ({ searchActive }: DesktopSearchPropsType) => {
   const [genres, setGenres] = useState<Genre[]>([]);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchGenres = async () => {
       const genre = await getMovieGenres();
-      const genres = genre.genres;
-      setGenres(genres);
+      setGenres(genre.genres);
     };
-    fetchMovies();
+    fetchGenres();
   }, []);
+
+  // Only read active genres when on the /search page
+  const activeGenres =
+    pathname === "/search"
+      ? (searchParams.get("genre")?.split(",").filter(Boolean) ?? [])
+      : [];
+
+  const toggleGenre = (genreId: number) => {
+    const id = String(genreId);
+    const newGenres = activeGenres.includes(id)
+      ? activeGenres.filter((g) => g !== id)
+      : [...activeGenres, id];
+
+    const params = new URLSearchParams();
+    params.delete("page");
+    if (newGenres.length > 0) {
+      params.set("genre", newGenres.join(","));
+    }
+    router.push(`/search?${params.toString()}`);
+  };
 
   return (
     <NavigationMenu>
@@ -37,7 +61,7 @@ export const DesktopSearch = ({ searchActive }: DesktopSearchPropsType) => {
               Genre
             </NavigationMenuTrigger>
           ) : (
-            <NavigationMenuTrigger className="dark:bg-neutral-900 border border-neutral-300 dark:text-white p-0 dark:border-neutral-800 pr-1 w-10 flex justify-center items-center h-10"></NavigationMenuTrigger>
+            <NavigationMenuTrigger className="dark:bg-neutral-900 border border-neutral-300 dark:text-white p-0 dark:border-neutral-800 pr-1 w-10 flex justify-center items-center h-10" />
           )}
           <NavigationMenuContent className="p-5">
             <div className="flex flex-col gap-1">
@@ -45,25 +69,30 @@ export const DesktopSearch = ({ searchActive }: DesktopSearchPropsType) => {
                 Genres
               </h1>
               <p className="text-base text-[#09090B] dark:text-white">
-                See lists of movies by genre
+                Select one or more genres
               </p>
             </div>
             <div className="w-full py-4">
               <div className="w-full h-px bg-gray-300"></div>
             </div>
             <ul className="flex w-77 lg:w-144.25 gap-4 h-fit flex-wrap">
-              {genres.map((genre) => (
-                <Badge
-                  key={genre.id}
-                  className="cursor-pointer font-semibold text-[12px]  text-black bg-white border border-gray-300 px-3.5 p-y h-5 dark:bg-black dark:text-white dark:border-neutral-800"
-                >
-                  <ListItem
-                    className="font-semibold text-[12px] rounded-full"
-                    title={genre.name}
-                    href={`/search/?genre=${genre.id}`}
-                  />
-                </Badge>
-              ))}
+              {genres.map((genre) => {
+                const isActive = activeGenres.includes(String(genre.id));
+                return (
+                  <Badge
+                    key={genre.id}
+                    onClick={() => toggleGenre(genre.id)}
+                    className={`cursor-pointer font-semibold text-[12px] px-3.5 h-5 select-none transition-colors
+                      ${
+                        isActive
+                          ? "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white"
+                          : "text-black bg-white border border-gray-300 dark:bg-black dark:text-white dark:border-neutral-800"
+                      }`}
+                  >
+                    {genre.name}
+                  </Badge>
+                );
+              })}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -71,18 +100,3 @@ export const DesktopSearch = ({ searchActive }: DesktopSearchPropsType) => {
     </NavigationMenu>
   );
 };
-
-function ListItem({
-  title,
-  children,
-  href,
-}: React.ComponentPropsWithoutRef<"a"> & { href: string }) {
-  return (
-    <NavigationMenuLink asChild>
-      <a href={href} className="flex flex-col gap-1 text-sm">
-        <div className="leading-none font-medium">{title}</div>
-        <div className="text-muted-foreground line-clamp-2">{children}</div>
-      </a>
-    </NavigationMenuLink>
-  );
-}

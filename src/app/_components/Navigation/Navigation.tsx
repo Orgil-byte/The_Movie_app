@@ -9,6 +9,7 @@ import Link from "next/link";
 import { Movie } from "@/lib/movie-data-types";
 import { getSearchValue } from "@/lib/api";
 import { X } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 const NavigationMain = () => {
   const [searchActive, setSearchActive] = useState(false);
@@ -17,6 +18,7 @@ const NavigationMain = () => {
   const [loading, setLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const searchParams = useSearchParams();
 
   const onChangeInput: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchValue(event.target.value);
@@ -64,6 +66,15 @@ const NavigationMain = () => {
 
   const closeSearch = () => {
     setSearchActive(false);
+  };
+
+  // Build "See all results" URL — preserve active genre if already on /search
+  const buildSeeAllUrl = () => {
+    const params = new URLSearchParams();
+    params.set("query", searchValue);
+    const genre = searchParams.get("genre");
+    if (genre) params.set("genre", genre);
+    return `/search?${params.toString()}`;
   };
 
   const moviesToDisplay = movieResults;
@@ -134,7 +145,8 @@ const NavigationMain = () => {
                   </Link>
                 ))
               )}
-              <Link href={`/search/${searchValue}`}>
+              {/* Unified search URL — preserves active genre filter */}
+              <Link href={buildSeeAllUrl()}>
                 <h3 className="font-medium cursor-pointer text-sm dark:text-white py-2 px-4 rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-900">
                   See all results for "{searchValue}"
                 </h3>
