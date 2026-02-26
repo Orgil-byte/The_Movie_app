@@ -6,7 +6,7 @@ const MovieAppMain = async () => {
   const { results } = await getNowPlayingMovies();
   return (
     <div className="flex justify-center w-full">
-      <div className="w-full h-fit flex flex-col items-center max-w-360">
+      <div className="w-full h-fit flex flex-col items-center">
         <HeroCarousel movies={results} />
         <MovieList />
       </div>

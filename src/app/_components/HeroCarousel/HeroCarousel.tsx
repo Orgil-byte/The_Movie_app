@@ -14,13 +14,13 @@ type HeroCarouselProps = {
 };
 
 const HeroCarousel = async ({ movies }: HeroCarouselProps) => {
-  const theMovies = movies.slice(17, 20);
+  const theMovies = movies.slice(16, 19);
   const trailersPerMovie: Trailers[] = await Promise.all(
     theMovies.map((movie) => getMovieTrailers(movie.id.toString())),
   );
 
   return (
-    <div className="min-93.75 w-full overflow-hidden mb-12 relative">
+    <div className="min-h-93.75 w-full overflow-hidden mb-12 relative">
       <Carousel className="min-w-93.75 w-full">
         <CarouselNext className="hidden absolute w-10 h-10 right-[3%] z-30 cursor-pointer lg:flex" />
         <CarouselContent>

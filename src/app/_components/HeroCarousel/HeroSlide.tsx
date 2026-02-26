@@ -16,7 +16,7 @@ const HeroSlide = ({ movie, trailers }: HeroSlideProps) => {
   return (
     <div className="cursor-pointer" onClick={() => router.push(`/${movie.id}`)}>
       <img
-        className="h-full w-full max-h-61.5 object-cover overflow-hidden sm:max-h-100 md:max-h-125 lg:max-h-150 xl:max-h-200 rounded-[5px]"
+        className="w-full object-cover overflow-hidden lg:aspect-16/7 rounded-[5px]"
         src={basImgurl + movie.backdrop_path}
         alt="Movie Img"
       />

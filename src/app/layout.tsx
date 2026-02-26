@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className="flex justify-center w-full">
-        <div className="w-full h-fit flex flex-col items-center max-w-360">
+        <div className="w-full h-fit flex flex-col items-center">
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

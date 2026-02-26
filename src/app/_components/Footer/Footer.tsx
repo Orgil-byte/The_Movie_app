@@ -3,7 +3,7 @@ import FooterRightInfo from "./FooterRightInfo";
 
 const Footer = () => {
   return (
-    <div className="py-10 px-5 w-full h-77 bg-indigo-700 flex flex-col gap-7 sm:relative sm:px-10 lg:h-70 lg:py-10 lg:px-20 lg:flex-row lg:justify-between mt-8">
+    <div className="py-10 px-5 w-full h-77 bg-indigo-700 flex flex-col gap-7 sm:relative sm:px-10 lg:h-70 lg:py-10 lg:px-20 lg:flex-row lg:justify-between mt-8 max-w-360">
       <div className="h-13 flex flex-col justify-between">
         <div className="flex items-center gap-2">
           <img
