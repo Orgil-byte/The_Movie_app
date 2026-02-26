@@ -13,12 +13,8 @@ export const GenreList = async ({ activeGenreId }: GenreListProps) => {
   return (
     <div className="w-full lg:max-w-72 flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <h1 className="font-semibold text-2xl dark:text-white">
-          Search by genre
-        </h1>
-        <p className="text-base dark:text-white">
-          See lists of movies by genre
-        </p>
+        <h1 className="font-semibold text-2xl dark:text-white">Search by genre</h1>
+        <p className="text-base dark:text-white">See lists of movies by genre</p>
       </div>
       <div className="w-full h-px bg-gray-300 dark:bg-neutral-700" />
       <div className="flex flex-wrap gap-2">
