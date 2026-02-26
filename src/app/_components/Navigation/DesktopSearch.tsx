@@ -60,7 +60,7 @@ export const DesktopSearch = ({ searchActive }: DesktopSearchPropsType) => {
                   <ListItem
                     className="font-semibold text-[12px] rounded-full"
                     title={genre.name}
-                    href={`/search/${genre.id}`}
+                    href={`/search/?genre=${genre.id}`}
                   />
                 </Badge>
               ))}
