@@ -1,6 +1,5 @@
-"use client";
-import { useState, useEffect, use } from "react";
-import { getMovieGenres, getSearchValue } from "@/lib/api";
+import { GenreList } from "@/components/GenreList";
+import { getGenreMoviesPlay } from "@/lib/api/genreMovies";
 import Movies from "@/app/_components/Movielist/Movies";
 import Link from "next/link";
 import {
@@ -11,60 +10,35 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { FetchMovieDataType, Genre } from "@/lib/movie-data-types";
-import { Badge } from "@/components/ui/badge";
 
-type SearchSeeMoreProps = {
-  params: Promise<{ movieId: string }>;
+type SearchProps = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-const SearchContent = ({ query }: { query: string }) => {
-  const [page, setPage] = useState(1);
-  const [data, setData] = useState<FetchMovieDataType | null>(null);
-  const [genres, setGenres] = useState<Genre[]>([]);
-  useEffect(() => {
-    const fetchMovies = async () => {
-      const genre = await getMovieGenres();
-      const genres = genre.genres;
-      setGenres(genres);
-    };
-    fetchMovies();
-  }, []);
+export default async function Search({ searchParams }: SearchProps) {
+  const { genre, page } = await searchParams;
+  const currentPage = Number(page) || 1;
 
-  useEffect(() => {
-    setPage(1);
-  }, [query]);
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      const result = await getSearchValue(query, page);
-      setData(result);
-    };
-    fetchMovies();
-  }, [query, page]);
-
-  if (!data) return <div>Loading...</div>;
+  const data = genre
+    ? await getGenreMoviesPlay(String(genre), currentPage)
+    : null;
 
   const getPageNumbers = () => {
-    if (page === 1) return [1, 2, 3];
-    return [page - 1, page, page + 1];
+    if (currentPage === 1) return [1, 2, 3];
+    return [currentPage - 1, currentPage, currentPage + 1];
   };
-  console.log(typeof query);
-  return (
-    <div className="max-w-7xl sm:px-5 lg:px-0">
-      <h1 className="px-5 text-[30px] font-semibold text-[#09090B] dark:text-white">
-        Search results
-      </h1>
-      <div className="flex flex-col sm:flex-row gap-7 sm:items-baseline">
-        <div className="w-full flex flex-col items-center my-10">
-          <div className="border-none sm:border-r pr-0 flex-col w-full min-w-93.75 gap-8  lg:gap-13 max-w-360  border-[#E4E4E7] sm:pr-7 dark:border-[#27272A]">
-            <div className="h-9 flex justify-between items-center w-full">
-              <p className="px-5 font-semibold text-[20px] leading-8 tracking-[-2.5%] dark:text-[#fafafa] pb-10">
-                {data.results.length} results for "{decodeURIComponent(query)}"
-              </p>
-            </div>
 
-            <div className="grid grid-cols-2 gap-3 sm:gap-4  md:gap-5 md:grid-cols-2 lg:gap-6 lg:grid-cols-3 xl:grid-cols-4">
+  return (
+    <div className="flex flex-col lg:flex-row px-5 md:px-10 lg:px-20 gap-8 w-full max-w-360 py-10">
+      {/* Movie results */}
+      <div className="flex-1 flex flex-col gap-6">
+        <h1 className="font-semibold text-2xl dark:text-white">
+          {genre ? "Movies by Genre" : "Select a genre to browse movies"}
+        </h1>
+
+        {data && data.results.length > 0 ? (
+          <>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
               {data.results.map((movie) => (
                 <Link href={`/${movie.id}`} key={movie.id}>
                   <Movies
@@ -77,24 +51,24 @@ const SearchContent = ({ query }: { query: string }) => {
               ))}
             </div>
 
-            <Pagination className="justify-end pt-10">
+            <Pagination className="justify-end">
               <PaginationContent>
                 <PaginationItem>
                   <PaginationPrevious
                     className="dark:text-white dark:bg-neutral-900"
-                    href="#"
-                    onClick={() => page > 1 && setPage(page - 1)}
+                    href={
+                      currentPage > 1
+                        ? `/search?genre=${genre}&page=${currentPage - 1}`
+                        : "#"
+                    }
                   />
                 </PaginationItem>
                 {getPageNumbers().map((pageNumber) => (
-                  <PaginationItem
-                    key={pageNumber}
-                    onClick={() => setPage(pageNumber)}
-                  >
+                  <PaginationItem key={pageNumber}>
                     <PaginationLink
                       className="dark:text-white"
-                      href="#"
-                      isActive={pageNumber === page}
+                      href={`/search?genre=${genre}&page=${pageNumber}`}
+                      isActive={pageNumber === currentPage}
                     >
                       {pageNumber}
                     </PaginationLink>
@@ -103,59 +77,25 @@ const SearchContent = ({ query }: { query: string }) => {
                 <PaginationItem>
                   <PaginationNext
                     className="dark:text-white dark:bg-neutral-900"
-                    href="#"
-                    onClick={() => page < data.total_pages && setPage(page + 1)}
+                    href={
+                      currentPage < data.total_pages
+                        ? `/search?genre=${genre}&page=${currentPage + 1}`
+                        : "#"
+                    }
                   />
                 </PaginationItem>
               </PaginationContent>
             </Pagination>
-          </div>
-        </div>
-        <div className="w-full max-w-96.75 flex flex-col gap-5 px-5">
-          <div className="flex flex-col gap-1">
-            <h1 className="font-semibold text-2xl leading-8 text-[#09090B] dark:text-white">
-              Search by genre
-            </h1>
-            <p className="text-base text-[#09090B] dark:text-white">
-              See lists of movies by genre
-            </p>
-          </div>
-          <ul className="flex w-full lg:w-full gap-4 h-fit flex-wrap">
-            {genres.map((genre) => (
-              <Badge
-                key={genre.id}
-                className="cursor-pointer font-semibold text-[12px]  text-black bg-white border border-gray-300 px-3.5 py h-5 dark:bg-black dark:text-white dark:border-neutral-800"
-              >
-                <ListItem
-                  className="font-semibold text-[12px] rounded-full"
-                  title={genre.name}
-                  href={`/search/?genre=${genre.id}`}
-                />
-              </Badge>
-            ))}
-          </ul>
-        </div>
+          </>
+        ) : (
+          genre && (
+            <p className="dark:text-white">No movies found for this genre.</p>
+          )
+        )}
       </div>
+
+      {/* Genre sidebar */}
+      <GenreList activeGenreId={genre ? String(genre) : undefined} />
     </div>
   );
-};
-
-function ListItem({
-  title,
-  children,
-  href,
-}: React.ComponentPropsWithoutRef<"a"> & { href: string }) {
-  return (
-    <a href={href} className="flex flex-col gap-1 text-sm">
-      <div className="leading-none font-medium">{title}</div>
-      <div className="text-muted-foreground line-clamp-2">{children}</div>
-    </a>
-  );
 }
-
-const SearchSeeMore = ({ params }: SearchSeeMoreProps) => {
-  const { movieId: query } = use(params);
-  return <SearchContent query={query} />;
-};
-
-export default SearchSeeMore;
