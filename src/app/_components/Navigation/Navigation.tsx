@@ -82,7 +82,7 @@ const NavigationMain = () => {
         }
       >
         <DesktopSearch searchActive={searchActive} />
-        <InputGroup className="w-40">
+        <InputGroup className="w-50 md:w-65 lg:w-100">
           <InputGroupInput
             onChange={onChangeInput}
             value={searchValue}

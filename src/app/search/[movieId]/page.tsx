@@ -60,7 +60,7 @@ const SearchContent = ({ query }: { query: string }) => {
           <div className="border-none sm:border-r pr-0 flex-col w-full min-w-93.75 gap-8  lg:gap-13 max-w-360  border-[#E4E4E7] sm:pr-7 dark:border-[#27272A]">
             <div className="h-9 flex justify-between items-center w-full">
               <p className="px-5 font-semibold text-[20px] leading-8 tracking-[-2.5%] dark:text-[#fafafa] pb-10">
-                {data.results.length} results for "{query}"
+                {data.results.length} results for "{decodeURIComponent(query)}"
               </p>
             </div>
 

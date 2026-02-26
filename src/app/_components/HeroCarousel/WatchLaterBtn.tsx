@@ -31,7 +31,7 @@ const WatchLaterBtn = ({ trailers }: MovieTrailerProps) => {
         asChild
       >
         <Button
-          className="font-medium dark:text-white lg:dark:text-black dark:hover:text-white text-[14px] leading-5 text-[#FAFAFA] md:text-lg lg:text-black lg:text-[14px]"
+          className="font-medium bg-black dark:text-white lg:dark:text-black dark:hover:text-white text-[14px] leading-5 text-[#FAFAFA] md:text-lg lg:text-black lg:text-[14px]"
           variant="outline"
         >
           Watch trailer
