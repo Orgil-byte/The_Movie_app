@@ -1,5 +1,11 @@
 "use client";
-import React, { ChangeEventHandler, useEffect, useState, useRef } from "react";
+import {
+  ChangeEventHandler,
+  useEffect,
+  useState,
+  useRef,
+  Suspense,
+} from "react";
 import { InputGroup, InputGroupInput } from "@/components/ui/input-group";
 
 import Logo from "@/components/ui/Logo";
@@ -11,13 +17,14 @@ import { getSearchValue } from "@/lib/api";
 import { X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
-const NavigationMain = () => {
+const NavigationContent = () => {
   const [searchActive, setSearchActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [movieResults, setMovieResults] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+
   const searchParams = useSearchParams();
 
   const onChangeInput: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -77,6 +84,7 @@ const NavigationMain = () => {
   };
 
   const moviesToDisplay = movieResults;
+
   return (
     <div className="w-full max-w-7xl h-14.75 flex justify-between items-center px-5 md:mb-3 lg:p-0">
       <Link className={searchActive ? "hidden" : "block"} href="/">
@@ -159,6 +167,14 @@ const NavigationMain = () => {
       </div>
       <NavigationButtons search={search} searchActive={searchActive} />
     </div>
+  );
+};
+
+const NavigationMain = () => {
+  return (
+    <Suspense fallback={<div className="w-full h-14.75 bg-transparent" />}>
+      <NavigationContent />
+    </Suspense>
   );
 };
 
