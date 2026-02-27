@@ -68,7 +68,6 @@ const NavigationMain = () => {
     setSearchActive(false);
   };
 
-  // Build "See all results" URL — preserve active genre if already on /search
   const buildSeeAllUrl = () => {
     const params = new URLSearchParams();
     params.set("query", searchValue);
@@ -145,7 +144,6 @@ const NavigationMain = () => {
                   </Link>
                 ))
               )}
-              {/* Unified search URL — preserves active genre filter */}
               <Link href={buildSeeAllUrl()}>
                 <h3 className="font-medium cursor-pointer text-sm dark:text-white py-2 px-4 rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-900">
                   See all results for "{searchValue}"

@@ -3,14 +3,12 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { useState, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import * as React from "react";
 import { getMovieGenres } from "@/lib/api";
 import { Genre } from "@/lib/movie-data-types";
 
@@ -32,7 +30,6 @@ export const DesktopSearch = ({ searchActive }: DesktopSearchPropsType) => {
     fetchGenres();
   }, []);
 
-  // Only read active genres when on the /search page
   const activeGenres =
     pathname === "/search"
       ? (searchParams.get("genre")?.split(",").filter(Boolean) ?? [])

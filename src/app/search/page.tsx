@@ -17,7 +17,7 @@ type SearchProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export default async function Search({ searchParams }: SearchProps) {
+const Search = async ({ searchParams }: SearchProps) => {
   const { genre, page, query } = await searchParams;
   const currentPage = Number(page) || 1;
   const genreIds = genre ? String(genre).split(",").filter(Boolean) : [];
@@ -26,19 +26,16 @@ export default async function Search({ searchParams }: SearchProps) {
   let totalPages = 1;
 
   if (query && genre) {
-    // Both: fetch search results then filter by genre client-side
     const data = await getSearchValue(String(query), currentPage);
     movies = data.results.filter((movie) =>
       genreIds.every((id) => movie.genre_ids.includes(Number(id))),
     );
     totalPages = data.total_pages;
   } else if (query) {
-    // Text search only
     const data = await getSearchValue(String(query), currentPage);
     movies = data.results;
     totalPages = data.total_pages;
   } else if (genre) {
-    // Genre filter only
     const data = await getGenreMoviesPlay(String(genre), currentPage);
     movies = data.results;
     totalPages = data.total_pages;
@@ -49,11 +46,11 @@ export default async function Search({ searchParams }: SearchProps) {
     return [currentPage - 1, currentPage, currentPage + 1];
   };
 
-  const buildPageUrl = (p: number) => {
+  const buildPageUrl = (page: number) => {
     const params = new URLSearchParams();
     if (query) params.set("query", String(query));
     if (genre) params.set("genre", String(genre));
-    params.set("page", String(p));
+    params.set("page", String(page));
     return `/search?${params.toString()}`;
   };
 
@@ -81,7 +78,7 @@ export default async function Search({ searchParams }: SearchProps) {
 
         {movies.length > 0 ? (
           <>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
               {movies.map((movie) => (
                 <Link href={`/${movie.id}`} key={movie.id}>
                   <Movies
@@ -134,4 +131,5 @@ export default async function Search({ searchParams }: SearchProps) {
       <GenreList />
     </div>
   );
-}
+};
+export default Search;

@@ -12,26 +12,33 @@ export const GenreList = () => {
   const [genres, setGenres] = useState<Genre[]>([]);
 
   useEffect(() => {
-    getMovieGenres().then(({ genres }) => setGenres(genres));
+    const fetchMovieGenre = async () => {
+      const { genres } = await getMovieGenres();
+      setGenres(genres);
+    };
+    fetchMovieGenre();
   }, []);
 
   const activeGenres =
     searchParams.get("genre")?.split(",").filter(Boolean) ?? [];
 
+  console.log(activeGenres);
+
   const toggleGenre = (genreId: number) => {
     const id = String(genreId);
     const newGenres = activeGenres.includes(id)
-      ? activeGenres.filter((g) => g !== id)
+      ? activeGenres.filter((genreBadge) => genreBadge !== id)
       : [...activeGenres, id];
 
     const params = new URLSearchParams(searchParams.toString());
+    console.log(params);
     params.delete("page");
     if (newGenres.length > 0) {
       params.set("genre", newGenres.join(","));
     } else {
       params.delete("genre");
     }
-    // preserve existing query if present
+
     router.push(`/search?${params.toString()}`);
   };
 
