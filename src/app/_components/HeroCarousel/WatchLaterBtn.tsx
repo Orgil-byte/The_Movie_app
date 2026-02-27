@@ -3,12 +3,12 @@ import { MovieDetailsType, Trailers } from "@/lib/movie-data-types";
 
 import {
   Dialog,
+  DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { X } from "lucide-react";
 
 type MovieTrailerProps = {
   trailers: Trailers;
@@ -37,9 +37,13 @@ const WatchLaterBtn = ({ trailers }: MovieTrailerProps) => {
         </Button>
       </DialogTrigger>
       <DialogContent
-        className="bg-black border-0 p-0 rounded-sm w-full lg:max-w-249.25 aspect-video"
+        className="bg-black border-0 flex flex-col items-end p-0 rounded-sm w-full lg:max-w-249.25 aspect-video"
         showCloseButton={false}
       >
+        <DialogClose className="h-fit w-fit m-0 p-0 lg:hidden">
+          <X className="text-white mt-2 mr-2"></X>
+        </DialogClose>
+
         {trailer ? (
           <iframe
             className="w-full rounded-sm lg:max-w-249.25 aspect-video"
