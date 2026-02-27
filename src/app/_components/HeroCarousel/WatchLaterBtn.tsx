@@ -47,7 +47,7 @@ const WatchLaterBtn = ({ trailers }: MovieTrailerProps) => {
         {trailer ? (
           <iframe
             className="w-full rounded-sm lg:max-w-249.25 aspect-video"
-            src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1`}
+            src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=0`}
             title={trailer.name}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
