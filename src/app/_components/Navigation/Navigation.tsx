@@ -17,6 +17,8 @@ import { getSearchValue } from "@/lib/api";
 import { X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
+
+
 const NavigationContent = () => {
   const [searchActive, setSearchActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -30,6 +32,8 @@ const NavigationContent = () => {
   const onChangeInput: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchValue(event.target.value);
   };
+
+
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -118,7 +122,7 @@ const NavigationContent = () => {
                 <p className="dark:text-white text-center p-10">...Loading</p>
               ) : (
                 moviesToDisplay.slice(0, 5).map((movie) => (
-                  <Link key={movie.id} href={`/${movie.id}`}>
+                  <Link key={movie.id} href={`/${movie.id}`} onClick={() =>{setShowResults(false)}}>
                     <div>
                       <div className="p-2 flex gap-4 h-29 dark:hover:bg-neutral-900 hover:bg-neutral-200 transition-colors duration-200 ease-out cursor-pointer rounded-sm">
                         <img
@@ -152,7 +156,7 @@ const NavigationContent = () => {
                   </Link>
                 ))
               )}
-              <Link href={buildSeeAllUrl()}>
+              <Link href={buildSeeAllUrl()} onClick={() =>{setShowResults(false)}}>
                 <h3 className="font-medium cursor-pointer text-sm dark:text-white py-2 px-4 rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-900">
                   See all results for "{searchValue}"
                 </h3>
