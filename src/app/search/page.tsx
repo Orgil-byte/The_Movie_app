@@ -24,6 +24,7 @@ const Search = async ({ searchParams }: SearchProps) => {
 
   let movies: Movie[] = [];
   let totalPages = 1;
+  let totalMovies = null
 
   if (query && genre) {
     const data = await getSearchValue(String(query), currentPage);
@@ -31,14 +32,17 @@ const Search = async ({ searchParams }: SearchProps) => {
       genreIds.every((id) => movie.genre_ids.includes(Number(id))),
     );
     totalPages = data.total_pages;
+    totalMovies = data.total_results
   } else if (query) {
     const data = await getSearchValue(String(query), currentPage);
     movies = data.results;
     totalPages = data.total_pages;
+    totalMovies = data.total_results
   } else if (genre) {
     const data = await getGenreMoviesPlay(String(genre), currentPage);
     movies = data.results;
     totalPages = data.total_pages;
+    totalMovies = data.total_results
   }
 
   const getPageNumbers = () => {
@@ -72,7 +76,7 @@ const Search = async ({ searchParams }: SearchProps) => {
           </h1>
           {hasFilters && (
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-              {movies.length} result{movies.length !== 1 ? "s" : ""} found
+              {totalMovies} result{totalMovies !== 1 ? "s" : ""} found
             </p>
           )}
         </div>
