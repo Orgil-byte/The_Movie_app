@@ -76,7 +76,7 @@ const Search = async ({ searchParams }: SearchProps) => {
           </h1>
           {hasFilters && (
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-              {totalMovies} result{totalMovies !== 1 ? "s" : ""} found
+              {movies.length} result{movies.length !== 1 ? "s" : ""} found
             </p>
           )}
         </div>
